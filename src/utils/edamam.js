@@ -8,7 +8,8 @@ export function searchFood(searchValue) {
       const dishes = result.hits.map(dish => {
         return {
           name: dish.recipe.label,
-          imageSrc: dish.recipe.image
+          imageSrc: dish.recipe.image,
+          diet: dish.recipe.dietLabels
         };
       });
       return dishes;

@@ -3,14 +3,31 @@ import PropTypes from "prop-types";
 import { searchFood } from "../utils/edamam";
 import styled from "styled-components";
 
-const RecepeInput = styled.input`
-  width: 350px;
+const RecipeInput = styled.input`
+  width: 100%;
   height: 60px;
   border-radius: 10px;
-  margin: 45px auto;
   font-size: 15px;
   font-family: sans-serif;
-  text-align: center;
+  padding-left: 60px;
+`;
+
+const Form = styled.form`
+  position: relative;
+  padding-top: 30px;
+  margin: 10px 5px;
+`;
+
+const SearchIcon = styled.img`
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  height: 40px;
+  opacity: 0.8;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
 `;
 
 function Search({ onFoodInput }) {
@@ -33,13 +50,16 @@ function Search({ onFoodInput }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <RecepeInput
-        onChange={handleChange}
-        value={searchValue}
-        placeholder="Any ideas for your meal?"
-      />
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <InputContainer>
+        <SearchIcon src="images/noun_Search_743838.png" />
+        <RecipeInput
+          onChange={handleChange}
+          value={searchValue}
+          placeholder="Any ideas for your meal?"
+        />
+      </InputContainer>
+    </Form>
   );
 }
 
