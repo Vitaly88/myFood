@@ -8,7 +8,7 @@ const RecipeInput = styled.input`
   height: 60px;
   border-radius: 10px;
   font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arial", "Helvetica", sans-serif;
   padding-left: 60px;
 `;
 

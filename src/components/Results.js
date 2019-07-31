@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import AddButton from "./AddButton";
 
 const IconImage = styled.img`
   width: 110px;
@@ -14,18 +15,18 @@ const IconImage = styled.img`
 
 const TextDescription = styled.div`
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   color: #5938e0;
   align-items: left;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arial", "Helvetica", sans-serif;
   font-size: 17px;
   font-weight: bold;
   margin: 5px;
 `;
 
 const BoxFoundItems = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   justify-content: left;
   align-items: center;
 `;
@@ -56,6 +57,7 @@ function Results({ dishes }) {
               <DietTag>{dish.diet}</DietTag>
             ))} */}
           </TextDescription>
+          <AddButton />
         </BoxFoundItems>
       ))}
     </div>

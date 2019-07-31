@@ -4,7 +4,7 @@ import Headline from "../components/Headline";
 
 const PlannerContainer = styled.div`
   color: #5938e0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arial", "Helvetica", sans-serif;
   font-size: 17px;
 `;
 
