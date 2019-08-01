@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import AddButton from "./AddButton";
+import SaveToMeals from "./SaveToMeals";
 
 const IconImage = styled.img`
   width: 110px;
@@ -42,8 +43,40 @@ const BoxFoundItems = styled.div`
 // `;
 
 function Results({ dishes }) {
-  if (dishes.length === 0) {
-    return <div>Sorry, I can't find anything.</div>;
+  // if (dishes.length === 0) {
+  //   return <div>Sorry, I can't find anything.</div>;
+  // }
+  const [selectedDish, setSelectedDish] = React.useState(null);
+
+  // const [saveDish, setSaveDish] = React.useState("");
+
+  // function handleSaveSubmit(dish) {
+  //   setSaveDish(dish);
+  // }
+
+  function handleSelectDish(dish) {
+    setSelectedDish(dish);
+  }
+
+  function handleTimeSelect(result) {
+    console.log(result);
+  }
+
+  if (selectedDish) {
+    return (
+      <div>
+        <BoxFoundItems key={selectedDish.name}>
+          <IconImage alt={selectedDish.name} src={selectedDish.imageSrc} />
+          <TextDescription>
+            {selectedDish.name}
+            {/* {dishes.map(dish => (
+              <DietTag>{dish.diet}</DietTag>
+            ))} */}
+          </TextDescription>
+        </BoxFoundItems>
+        {selectedDish && <SaveToMeals onTimeSelect={handleTimeSelect} />}
+      </div>
+    );
   }
 
   return (
@@ -57,7 +90,7 @@ function Results({ dishes }) {
               <DietTag>{dish.diet}</DietTag>
             ))} */}
           </TextDescription>
-          <AddButton />
+          <AddButton onClick={() => handleSelectDish(dish)} />
         </BoxFoundItems>
       ))}
     </div>

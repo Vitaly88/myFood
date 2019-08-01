@@ -4,9 +4,10 @@ import styled from "styled-components";
 const PlusButton = styled.button`
   background-color: transparent;
   border: 2px solid #5938e0;
-  border-radius: 180px;
-  padding: 5px;
-  font-size: 20px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
   font-weight: bold;
   color: #5938e0;
   margin: 19px;
@@ -17,7 +18,7 @@ const PlusButton = styled.button`
   }
 `;
 
-function AddButton() {
-  return <PlusButton>&#43;</PlusButton>;
+function AddButton(props) {
+  return <PlusButton {...props}>&#43;</PlusButton>;
 }
 export default AddButton;
