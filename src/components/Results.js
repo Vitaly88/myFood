@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import AddButton from "./AddButton";
-import SaveToMeals from "./SaveToMeals";
+import PopUpDatePicker from "./PopUpDatePicker";
 
 const IconImage = styled.img`
   width: 110px;
@@ -74,7 +74,12 @@ function Results({ dishes }) {
             ))} */}
           </TextDescription>
         </BoxFoundItems>
-        {selectedDish && <SaveToMeals onTimeSelect={handleTimeSelect} />}
+        {selectedDish && (
+          <PopUpDatePicker
+            selectedDish={selectedDish}
+            onTimeSelect={handleTimeSelect}
+          />
+        )}
       </div>
     );
   }

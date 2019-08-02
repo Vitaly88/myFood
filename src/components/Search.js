@@ -14,7 +14,7 @@ const RecipeInput = styled.input`
 
 const Form = styled.form`
   position: relative;
-  padding-top: 30px;
+  padding-top: 20px;
   margin: 10px 5px;
 `;
 
@@ -32,7 +32,6 @@ const InputContainer = styled.div`
 
 function Search({ onFoodInput }) {
   const [searchValue, setSearchValue] = React.useState("");
-  //const [searchHits, setSearchHits] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();

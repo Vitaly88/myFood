@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
+import Oval from "../components/Oval";
 
 const PlannerContainer = styled.div`
   color: #5938e0;
@@ -8,11 +9,12 @@ const PlannerContainer = styled.div`
   font-size: 17px;
 `;
 
-function MealPlanner() {
+function MealPlanner({ Hello }) {
   return (
     <>
+      <Oval />
       <Headline size="L">Meal Planner</Headline>
-      <PlannerContainer>Hello</PlannerContainer>
+      <PlannerContainer>{Hello}</PlannerContainer>
     </>
   );
 }

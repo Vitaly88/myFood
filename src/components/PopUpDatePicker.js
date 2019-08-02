@@ -1,0 +1,109 @@
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import DayPicker from "react-day-picker";
+import "react-day-picker/lib/style.css";
+import { fadeIn } from "../utils/animations";
+
+const PopUpForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  color: #5938e0;
+  align-items: center;
+  justify-content: center;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #e6e6e6;
+  width: 100vw;
+  border-radius: 20px;
+  opacity: 0.9;
+  bottom: 0;
+  /* filter: grayscale(0.7) saturate(0.8); */
+  animation: ${fadeIn} 1s 1 both;
+  position: fixed;
+`;
+
+const AddMealButton = styled.button`
+  width: 130px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: #5938e0;
+  color: white;
+  font-family: "Arial", "Helvetica", sans-serif;
+`;
+
+function PopUpDatePicker({ onTimeSelect, selectedDish }) {
+  const [selectedDay, setSelectedDay] = React.useState("");
+  const [selectedOption, setSelectedOption] = React.useState(false);
+
+  function handleAddMeal(event) {
+    event.preventDefault();
+    const dish = {
+      title: selectedDish.name,
+      image: selectedDish.imageSrc
+      //date: selectedDay,
+    };
+    onTimeSelect(dish);
+  }
+  const modifiersStyles = {
+    today: {
+      color: "#fff",
+      backgroundColor: "#5938e0"
+    }
+  };
+
+  function handleDayClick(selectedDay) {
+    return setSelectedDay(selectedDay);
+  }
+
+  function handleOptionChange(selectedOption) {
+    setSelectedOption(selectedOption);
+  }
+
+  return (
+    <PopUpForm onSubmit={handleAddMeal}>
+      <DayPicker
+        onDayClick={handleDayClick}
+        selectedDays={selectedDay}
+        firstDayOfWeek={1}
+        modifiersStyles={modifiersStyles}
+      />
+      <label>
+        <input
+          type="radio"
+          value="breakfast"
+          checked={selectedOption === "breakfast"}
+          onChange={handleOptionChange}
+        />
+        Breakfast
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="lunch"
+          checked={selectedOption === "lunch"}
+          onChange={handleOptionChange}
+        />
+        Lunch
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="dinner"
+          checked={selectedOption === "dinner"}
+          onChange={handleOptionChange}
+        />
+        Dinner
+      </label>
+      <br />
+      <AddMealButton>Add to Meal Planner</AddMealButton>
+    </PopUpForm>
+  );
+}
+
+PopUpDatePicker.propTypes = {
+  onTimeSelect: PropTypes.func.isRequired,
+  selectedDish: PropTypes.array.isRequired
+};
+export default PopUpDatePicker;
