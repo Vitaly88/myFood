@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+//import PropTypes from "prop-types";
 
 const StyledOval = styled.div`
   position: absolute;
   height: 565px;
   top: -400px;
-  width: 185vw;
+  width: 695px;
   background-color: #5938e0;
   border-radius: 50%;
 `;
@@ -22,5 +23,8 @@ function Oval() {
     </CenteredOval>
   );
 }
+// Oval.propTypes = {
+
+// }
 
 export default Oval;

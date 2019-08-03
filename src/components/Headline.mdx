@@ -1,0 +1,26 @@
+---
+name: Headline
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import GlobalStyle from "../app/GlobalStyles";
+import Headline from "./Headline";
+
+<GlobalStyle />
+
+## Properties
+
+<Props of={Headline} />
+
+## Basic usage
+
+<Playground>
+  <Headline>Headline Default</Headline>
+</Playground>
+
+<Playground>
+  <Headline size="S">Headline S</Headline>
+  <Headline size="M">Headline M</Headline>
+  <Headline size="L">Headline L</Headline>
+</Playground>

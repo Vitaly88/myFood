@@ -4,12 +4,12 @@ import Headline from "../components/Headline";
 import Oval from "../components/Oval";
 
 const PlannerContainer = styled.div`
-  color: #5938e0;
+  color: white;
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 17px;
 `;
 
-function MealPlanner({ Hello }) {
+function MealPlanner({ Hello, ...props }) {
   return (
     <>
       <Oval />

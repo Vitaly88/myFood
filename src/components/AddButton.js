@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const PlusButton = styled.button`
   background-color: transparent;
@@ -21,4 +22,8 @@ const PlusButton = styled.button`
 function AddButton(props) {
   return <PlusButton {...props}>&#43;</PlusButton>;
 }
+
+AddButton.propTypes = {
+  props: PropTypes.array.isRequired
+};
 export default AddButton;
