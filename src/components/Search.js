@@ -14,8 +14,21 @@ const RecipeInput = styled.input`
 
 const Form = styled.form`
   position: relative;
-  padding-top: 20px;
-  margin: 10px 5px;
+  padding: 20px 10px;
+
+  /* margin: 10px 5px; */
+  background: blue;
+
+  &:before {
+    content: "";
+    background: blue;
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    border-radius: 80%;
+  }
 `;
 
 const SearchIcon = styled.img`

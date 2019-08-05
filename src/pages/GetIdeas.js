@@ -5,24 +5,26 @@ import AddCarousel from "../components/AddCarousel";
 import Oval from "../components/Oval";
 //import Suggestions from "../components/Suggestions";
 
-function GetIdeas() {
+function GetIdeas({ onMealSelect, history }) {
   const [dishes, setDishes] = React.useState([]);
 
   function handleDishChange(newDishes) {
     setDishes(newDishes);
   }
 
-  if (dishes) {
-    return (
-      <div>
-        <Oval />
-        <Search onFoodInput={handleDishChange} />
-        <Results dishes={dishes} />
-        <AddCarousel dishes={dishes} />
-        {/* <Suggestions /> */}
-      </div>
-    );
+  function handleMealSelect(meal) {
+    onMealSelect(meal);
+    history.push("/planner");
   }
+
+  return (
+    <div>
+      <Search onFoodInput={handleDishChange} />
+      <Results dishes={dishes} onMealSelect={handleMealSelect} />
+      {/* <AddCarousel dishes={dishes} /> */}
+      {/* <Suggestions /> */}
+    </div>
+  );
 }
 
 export default GetIdeas;

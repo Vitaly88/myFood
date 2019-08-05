@@ -12,7 +12,7 @@ function AddCarousel({ dishes }) {
   //   [dishes]
   // );
 
-  searchFood(dishes.imageSrc);
+  console.log(searchFood(dishes));
 
   return (
     <Carousel>

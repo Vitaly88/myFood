@@ -6,7 +6,7 @@ export default createGlobalStyle`
 }
 
 html, body{
-    margin:0;
+    margin: 0;
 
 }
 

@@ -42,7 +42,7 @@ const BoxFoundItems = styled.div`
 //   border-radius: 20px;
 // `;
 
-function Results({ dishes }) {
+function Results({ dishes, onMealSelect }) {
   // if (dishes.length === 0) {
   //   return <div>Sorry, I can't find anything.</div>;
   // }
@@ -59,7 +59,13 @@ function Results({ dishes }) {
   }
 
   function handleTimeSelect(result) {
-    console.log(result);
+    const newMeal = {
+      mealType: result.mealType,
+      date: result.day.toISOString(),
+      title: selectedDish.name,
+      image: selectedDish.imageSrc
+    };
+    onMealSelect(newMeal);
   }
 
   if (selectedDish) {
@@ -74,12 +80,7 @@ function Results({ dishes }) {
             ))} */}
           </TextDescription>
         </BoxFoundItems>
-        {selectedDish && (
-          <PopUpDatePicker
-            selectedDish={selectedDish}
-            onTimeSelect={handleTimeSelect}
-          />
-        )}
+        {selectedDish && <PopUpDatePicker onTimeSelect={handleTimeSelect} />}
       </div>
     );
   }

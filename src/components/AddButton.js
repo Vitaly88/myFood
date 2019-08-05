@@ -24,6 +24,6 @@ function AddButton(props) {
 }
 
 AddButton.propTypes = {
-  props: PropTypes.array.isRequired
+  onClick: PropTypes.func.isRequired
 };
 export default AddButton;

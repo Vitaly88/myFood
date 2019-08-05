@@ -1,20 +1,18 @@
 import React from "react";
-import styled from "styled-components";
+//import styled from "styled-components";
 import Headline from "../components/Headline";
 import Oval from "../components/Oval";
 
-const PlannerContainer = styled.div`
-  color: white;
-  font-family: "Arial", "Helvetica", sans-serif;
-  font-size: 17px;
-`;
+// const PlannerContainer = styled(Headline)`
+//   color: black;
+// `;
 
-function MealPlanner({ Hello, ...props }) {
+function MealPlanner({ meals }) {
+  console.log(meals);
   return (
     <>
       <Oval />
-      <Headline size="L">Meal Planner</Headline>
-      <PlannerContainer>{Hello}</PlannerContainer>
+      <Headline>Meal Planner</Headline>|
     </>
   );
 }

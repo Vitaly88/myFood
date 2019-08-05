@@ -24,6 +24,11 @@ const PopUpForm = styled.form`
   position: fixed;
 `;
 
+const RadioGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const AddMealButton = styled.button`
   width: 130px;
   height: 35px;
@@ -33,18 +38,14 @@ const AddMealButton = styled.button`
   font-family: "Arial", "Helvetica", sans-serif;
 `;
 
-function PopUpDatePicker({ onTimeSelect, selectedDish }) {
+function PopUpDatePicker({ onTimeSelect }) {
   const [selectedDay, setSelectedDay] = React.useState("");
-  const [selectedOption, setSelectedOption] = React.useState(false);
+  const [selectedOption, setSelectedOption] = React.useState(null);
 
   function handleAddMeal(event) {
     event.preventDefault();
-    const dish = {
-      title: selectedDish.name,
-      image: selectedDish.imageSrc
-      //date: selectedDay,
-    };
-    onTimeSelect(dish);
+
+    onTimeSelect({ day: selectedDay, mealType: selectedOption });
   }
   const modifiersStyles = {
     today: {
@@ -53,49 +54,55 @@ function PopUpDatePicker({ onTimeSelect, selectedDish }) {
     }
   };
 
-  function handleDayClick(selectedDay) {
-    return setSelectedDay(selectedDay);
+  function handleDayClick(day, { selected }) {
+    console.log(day, selected);
+    setSelectedDay(day);
   }
 
-  function handleOptionChange(selectedOption) {
-    setSelectedOption(selectedOption);
+  function handleOptionChange(event) {
+    console.log(selectedOption);
+    setSelectedOption(event.target.value);
   }
 
   return (
     <PopUpForm onSubmit={handleAddMeal}>
       <DayPicker
         onDayClick={handleDayClick}
-        selectedDays={selectedDay}
         firstDayOfWeek={1}
         modifiersStyles={modifiersStyles}
       />
-      <label>
-        <input
-          type="radio"
-          value="breakfast"
-          checked={selectedOption === "breakfast"}
-          onChange={handleOptionChange}
-        />
-        Breakfast
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="lunch"
-          checked={selectedOption === "lunch"}
-          onChange={handleOptionChange}
-        />
-        Lunch
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="dinner"
-          checked={selectedOption === "dinner"}
-          onChange={handleOptionChange}
-        />
-        Dinner
-      </label>
+      <RadioGroup>
+        <label>
+          <input
+            type="radio"
+            name="meal-type"
+            value="breakfast"
+            checked={selectedOption === "breakfast"}
+            onChange={handleOptionChange}
+          />
+          Breakfast
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="meal-type"
+            value="lunch"
+            checked={selectedOption === "lunch"}
+            onChange={handleOptionChange}
+          />
+          Lunch
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="meal-type"
+            value="dinner"
+            checked={selectedOption === "dinner"}
+            onChange={handleOptionChange}
+          />
+          Dinner
+        </label>
+      </RadioGroup>
       <br />
       <AddMealButton>Add to Meal Planner</AddMealButton>
     </PopUpForm>
@@ -103,7 +110,7 @@ function PopUpDatePicker({ onTimeSelect, selectedDish }) {
 }
 
 PopUpDatePicker.propTypes = {
-  onTimeSelect: PropTypes.func.isRequired,
-  selectedDish: PropTypes.array.isRequired
+  onTimeSelect: PropTypes.func.isRequired
+  // selectedDish: PropTypes.array.isRequired
 };
 export default PopUpDatePicker;
