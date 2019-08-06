@@ -15,7 +15,9 @@ const StyledHeadline = styled.h1`
   margin: 0;
   font-size: ${props => getSize(props.size)};
   font-family: "Arial", "Helvetica", sans-serif;
-  color: #5938e0;
+  color: white;
+  text-align: center;
+  margin-top: 60px;
 `;
 
 function Headline({ size, ...props }) {

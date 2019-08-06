@@ -1,14 +1,14 @@
 import React from "react";
 //import styled from "styled-components";
-//import PropTypes from "prop-types";
 import Header from "../components/Header";
 
-function GroceryList() {
+function Recipe() {
   return (
     <>
-      <Header title="Grocery List" />
+      <Header />
+      <div>Hello</div>;
     </>
   );
 }
 
-export default GroceryList;
+export default Recipe;

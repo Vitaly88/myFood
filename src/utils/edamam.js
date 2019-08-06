@@ -1,15 +1,17 @@
 export function searchFood(searchValue) {
   return fetch(
-    `https://api.edamam.com/search?q=${searchValue}&app_id="0da1dcbc"&app_key="fd852335fd5a122fdd1ffb2094eed398	—"
-&from=0&to=5`
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
   )
     .then(res => res.json())
     .then(result => {
-      const dishes = result.hits.map(dish => {
+      const dishes = result.meals.map(dish => {
         return {
-          name: dish.recipe.label,
-          imageSrc: dish.recipe.image,
-          diet: dish.recipe.dietLabels
+          mealId: dish.idMeal,
+          name: dish.strMeal,
+          imageSrc: dish.strMealThumb,
+          diet: dish.strArea,
+          recipe: dish.strInstructions,
+          ingredients: dish.strIngredient
         };
       });
       return dishes;

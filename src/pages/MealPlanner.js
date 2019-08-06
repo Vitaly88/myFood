@@ -1,27 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import Oval from "../components/Oval";
-import Header from "../components/Header";
+import Headline from "../components/Headline";
 import GroupPicTitle from "../components/GroupPicTitle";
 
 const GroupedInfo = styled.div`
-  position: relative;
-  top: 70px;
+  /* position: relative; */
+  margin-top: 200px;
   margin: 10px;
+  color: #5938e0;
+`;
+
+const Headlines = styled.div`
+  margin: 20px;
 `;
 
 function MealPlanner({ meals }) {
-  console.log(meals);
+  const [deleteItem, setDeleteItem] = React.useState([]);
+
+  function handleDeleteDish() {
+    setDeleteItem();
+  }
   return (
     <>
-      <Oval />
-      <Header title="Meal Planner" />
+      <Headline size="L" title="Meal Planner" />
       <GroupedInfo>
         {meals.map(dish => (
           <>
-            <div>{dish.date}</div>
-            <div>{dish.mealType.toUpperCase()}</div>
-            <GroupPicTitle name={dish.title} imageSrc={dish.image} />
+            <Headlines>
+              <h3>{dish.date}</h3>
+              <br />
+              <div>{dish.mealType.toUpperCase()}</div>
+            </Headlines>
+            <GroupPicTitle
+              name={dish.title}
+              imageSrc={dish.image}
+              onDeleteDish={() => setDeleteItem()}
+            />
           </>
         ))}
       </GroupedInfo>

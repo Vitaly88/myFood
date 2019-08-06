@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import AddButton from "../components/AddButton";
+import DeleteButton from "../components/DeleteButton";
 
 const IconImage = styled.img`
   width: 110px;
@@ -39,26 +40,39 @@ const BoxItems = styled.div`
 //   font-size: 10px;
 //   font-weight: bold;
 //   border-radius: 20px;
-// `;
+// `
 
-function GroupPicTitle({ name, imageSrc, onSelectDish }) {
+function GroupPicTitle({
+  name,
+  imageSrc,
+  onSelectDish,
+  onDeleteDish,
+  mealId,
+  onOpenRecipe,
+  recipe,
+  ingredients
+}) {
   return (
-    <BoxItems key={name}>
-      <IconImage alt={name} src={imageSrc} />
-      <TextDescription>
-        {name}
-        {/* {dishes.map(dish => (
+    <div key={mealId}>
+      <BoxItems onClick={() => onOpenRecipe()}>
+        <IconImage alt={name} src={imageSrc} />
+        <TextDescription>
+          {name}
+          {/* {dishes.map(dish => (
               <DietTag>{dish.diet}</DietTag>
             ))} */}
-      </TextDescription>
-      {onSelectDish && <AddButton onClick={() => onSelectDish()} />}
-    </BoxItems>
+        </TextDescription>
+
+        {onSelectDish && <AddButton onClick={() => onSelectDish()} />}
+        {onDeleteDish && <DeleteButton onClick={() => onDeleteDish()} />}
+      </BoxItems>
+    </div>
   );
 }
 
 GroupPicTitle.propTypes = {
-  name: PropTypes.array.isRequired,
-  imageSrc: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired,
   onSelectDish: PropTypes.func.isRequired
 };
 export default GroupPicTitle;

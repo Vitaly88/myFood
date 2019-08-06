@@ -13,20 +13,25 @@ const RecipeInput = styled.input`
 `;
 
 const Form = styled.form`
+  margin-top: -150px;
   position: relative;
-  padding: 20px 10px;
+  display: flex;
+  padding: 25px 0;
+  justify-content: center;
 `;
 
 const SearchIcon = styled.img`
   position: absolute;
-  left: 10px;
-  top: 12px;
+  left: 15px;
+  top: 20px;
   height: 40px;
   opacity: 0.8;
 `;
 
 const InputContainer = styled.div`
-  position: relative;
+  position: fixed;
+  width: 100%;
+  padding: 10px;
 `;
 
 function Search({ onFoodInput }) {

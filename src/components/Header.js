@@ -2,20 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
 import PropTypes from "prop-types";
+import Oval from "../components/Oval";
 
-const StyledHeader = styled(Headline)`
-  position: relative;
-  color: white;
-  text-align: center;
-  margin-top: 60px;
+const ContainerHeader = styled.div`
+  top: 10px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 `;
 
 function Header({ title }) {
-  return <StyledHeader size="L">{title}</StyledHeader>;
+  return (
+    <ContainerHeader>
+      <Oval />
+    </ContainerHeader>
+  );
 }
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 export default Header;
