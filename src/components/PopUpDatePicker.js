@@ -14,7 +14,8 @@ const PopUpForm = styled.form`
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 17px;
   font-weight: bold;
-  background-color: #e6e6e6;
+  background-color: white;
+  border: 1px solid #5938e0;
   width: 100vw;
   border-radius: 20px;
   opacity: 0.9;
@@ -60,7 +61,6 @@ function PopUpDatePicker({ onTimeSelect }) {
   }
 
   function handleOptionChange(event) {
-    console.log(selectedOption);
     setSelectedOption(event.target.value);
   }
 

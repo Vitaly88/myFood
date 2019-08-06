@@ -1,7 +1,7 @@
 import React from "react";
 import Search from "../components/Search";
 import Results from "../components/Results";
-import AddCarousel from "../components/AddCarousel";
+//import AddCarousel from "../components/AddCarousel";
 import Oval from "../components/Oval";
 //import Suggestions from "../components/Suggestions";
 
@@ -19,6 +19,7 @@ function GetIdeas({ onMealSelect, history }) {
 
   return (
     <div>
+      <Oval />
       <Search onFoodInput={handleDishChange} />
       <Results dishes={dishes} onMealSelect={handleMealSelect} />
       {/* <AddCarousel dishes={dishes} /> */}

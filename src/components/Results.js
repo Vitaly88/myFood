@@ -58,10 +58,17 @@ function Results({ dishes, onMealSelect }) {
     setSelectedDish(dish);
   }
 
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
   function handleTimeSelect(result) {
     const newMeal = {
       mealType: result.mealType,
-      date: result.day.toISOString(),
+      date: result.day.toLocaleDateString("en-US", options),
       title: selectedDish.name,
       image: selectedDish.imageSrc
     };
