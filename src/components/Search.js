@@ -14,7 +14,7 @@ const RecipeInput = styled.input`
 
 const Form = styled.form`
   position: relative;
-  padding: 25px 10px;
+  padding: 20px 10px;
 `;
 
 const SearchIcon = styled.img`

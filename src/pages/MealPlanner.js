@@ -2,10 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
 import Oval from "../components/Oval";
-
-const PlannerContainer = styled(Headline)`
-  color: white;
-`;
+import Header from "../components/Header";
 
 const StyledImage = styled.img`
   width: 110px;
@@ -18,6 +15,8 @@ const StyledImage = styled.img`
 `;
 
 const GroupedInfo = styled.div`
+  position: relative;
+  top: 70px;
   color: #5938e0;
   align-items: center;
   font-family: "Arial", "Helvetica", sans-serif;
@@ -36,17 +35,12 @@ function MealPlanner({ meals }) {
   return (
     <>
       <Oval />
-      <PlannerContainer size="L" title="Meal Planner" />
-      <br />
-      <br />
-      <br />
+      <Header title="Meal Planner" />
       <GroupedInfo>
         {meals.map(dish => (
           <>
             <div>{dish.date}</div>
-            <Headline size="M" title={dish.mealType}>
-              {dish.mealType}
-            </Headline>
+            <Headline size="S">{dish.mealType.toUpperCase()}</Headline>
             <div key={dish.title}>
               <StyledImage alt={dish.title} src={dish.image} />
               <MealList>{dish.title}</MealList>

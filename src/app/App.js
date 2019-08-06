@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MealPlanner from "../pages/MealPlanner";
 import GetIdeas from "../pages/GetIdeas";
 import { getMealsFromStorage, setMealsToStorage } from "../utils/storage";
+import GroceryList from "../pages/GroceryList";
 
 function App() {
   const [meals, setMeals] = React.useState(getMealsFromStorage());
@@ -32,6 +33,7 @@ function App() {
             path="/planner"
             render={props => <MealPlanner meals={meals} {...props} />}
           />
+          <Route path="/grocery" component={GroceryList} />
         </Switch>
       </Router>
     </div>

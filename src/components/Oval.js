@@ -4,24 +4,18 @@ import styled from "styled-components";
 
 const StyledOval = styled.div`
   position: absolute;
-  height: 100px;
+  height: 150px;
   width: 100vw;
   background-color: #5938e0;
-  &:before {
-    content: "";
-    background: #5938e0;
-    position: absolute;
-    bottom: -47px;
-    width: 100%;
-    height: 90px;
-    border-radius: 50%;
-  }
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
 `;
 
 const CenteredOval = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  color: white;
 `;
 
 function Oval() {
