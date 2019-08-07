@@ -1,12 +1,21 @@
 import React from "react";
 //import styled from "styled-components";
-import Header from "../components/Header";
+import Headline from "../components/Headline";
 
-function Recipe() {
+function Recipe({ dishes, mealId, name, imageSrc, diet, recipe, ingredients }) {
   return (
     <>
-      <Header />
-      <div>Hello</div>;
+      <Headline size="L">{name}</Headline>
+      {/* {dishes.map(dish => (
+        <>
+          <Headline>{dish.name}</Headline>
+          <img alt={dish.name} src={dish.imageSrc} />
+          <h2>Ingredients</h2>
+          <div>{dish.ingredients}</div>
+          <h2>Preparation</h2>
+          <div>{dish.preparation}</div>
+        </>
+      ))} */}
     </>
   );
 }

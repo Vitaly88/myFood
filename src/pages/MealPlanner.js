@@ -5,13 +5,12 @@ import GroupPicTitle from "../components/GroupPicTitle";
 
 const GroupedInfo = styled.div`
   /* position: relative; */
-  margin-top: 200px;
   margin: 10px;
   color: #5938e0;
 `;
 
 const Headlines = styled.div`
-  margin: 20px;
+  margin: 10px;
 `;
 
 function MealPlanner({ meals }) {
@@ -23,22 +22,24 @@ function MealPlanner({ meals }) {
 
   return (
     <>
-      <Headline title="Meal Planner" />
+      <Headline size="L">Meal Planner</Headline>
       <GroupedInfo>
-        {meals.map(dish => (
-          <>
-            <Headlines>
-              <h3>{dish.date}</h3>
-              <br />
-              <div>{dish.mealType.toUpperCase()}</div>
-            </Headlines>
-            <GroupPicTitle
-              name={dish.title}
-              imageSrc={dish.image}
-              onDeleteDish={() => setDeleteItem()}
-            />
-          </>
-        ))}
+        {meals
+          .map(dish => (
+            <>
+              <Headlines>
+                <h3>{dish.date}</h3>
+                <br />
+                <div>{dish.mealType.toUpperCase()}</div>
+              </Headlines>
+              <GroupPicTitle
+                name={dish.title}
+                imageSrc={dish.image}
+                onDeleteDish={() => setDeleteItem()}
+              />
+            </>
+          ))
+          .slice(0, 21)}
       </GroupedInfo>
     </>
   );

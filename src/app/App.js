@@ -53,7 +53,10 @@ function App() {
                 path="/planner"
                 render={props => <MealPlanner meals={meals} {...props} />}
               />
-              <Route path="/grocery" component={GroceryList} />
+              <Route
+                path="/grocery"
+                render={props => <GroceryList meals={meals} {...props} />}
+              />
               <Route path="/recipe" render={props => <Recipe {...props} />} />
               <Route path="/favorites" component={Favorites} />
               <Route path="/settings" component={Settings} />

@@ -14,6 +14,7 @@ const ContainerHeader = styled.div`
 function Header({ title }) {
   return (
     <ContainerHeader>
+      <Headline title={title} />
       <Oval />
     </ContainerHeader>
   );

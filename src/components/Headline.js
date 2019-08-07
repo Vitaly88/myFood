@@ -12,16 +12,24 @@ function getSize(size) {
   return sizes[size] || sizes.M;
 }
 const StyledHeadline = styled.h1`
-  margin: 0;
   font-size: ${props => getSize(props.size)};
   font-family: "Arial", "Helvetica", sans-serif;
   color: white;
-  text-align: center;
-  margin-top: 60px;
+  position: fixed;
+  margin-top: -80px;
+`;
+
+const CenteredHeadline = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 function Headline({ size, ...props }) {
-  return <StyledHeadline size={size} {...props} />;
+  return (
+    <CenteredHeadline>
+      <StyledHeadline size={size} {...props} />
+    </CenteredHeadline>
+  );
 }
 
 Headline.propTypes = {

@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import styled from "styled-components";
+import styled from "styled-components";
 import PopUpDatePicker from "./PopUpDatePicker";
 import GroupPicTitle from "./GroupPicTitle";
+
+const StyledResults = styled.div`
+  margin-top: 20px;
+`;
 
 function Results({ dishes, onMealSelect }) {
   // if (dishes.length === 0) {
@@ -15,8 +19,8 @@ function Results({ dishes, onMealSelect }) {
     setSelectedDish(dish);
   }
 
-  function handleOpenRecipe(selectedDish) {
-    setOpenRecipe(selectedDish);
+  function handleOpenRecipe(dish) {
+    setOpenRecipe(dish);
   }
 
   const options = {
@@ -31,45 +35,49 @@ function Results({ dishes, onMealSelect }) {
       mealType: result.mealType,
       date: result.day.toLocaleDateString("en-US", options),
       title: selectedDish.name,
-      image: selectedDish.imageSrc
+      image: selectedDish.imageSrc,
+      ingredients: selectedDish.ingredients
     };
     onMealSelect(newMeal);
   }
 
   if (selectedDish) {
     return (
-      <div>
+      <StyledResults>
         <GroupPicTitle
           name={selectedDish.name}
           imageSrc={selectedDish.imageSrc}
+          ingredients={selectedDish.ingredients}
           onOpenRecipe={() => handleOpenRecipe(selectedDish)}
         />
         {selectedDish && <PopUpDatePicker onTimeSelect={handleTimeSelect} />}
-      </div>
+      </StyledResults>
     );
   }
 
-  if (openRecipe) {
-    return (
-      <div>
-        <img alt={selectedDish.name} src={selectedDish.imageSrc} />
-
-        <p>{selectedDish.recipe}</p>
-      </div>
-    );
-  }
+  // if (openRecipe) {
+  //   return (
+  //     <>
+  //       <img alt={dish.name} src={dish.imageSrc} />
+  //       <h2>Ingredients</h2>
+  //       <div>{dish.ingredients}</div>
+  //       <h2>Preparation</h2>
+  //       <div>{dish.preparation}</div>
+  //     </>
+  //   );
+  // }
 
   return (
-    <div>
+    <StyledResults>
       {dishes.map(dish => (
         <GroupPicTitle
           name={dish.name}
           imageSrc={dish.imageSrc}
           onSelectDish={() => handleSelectDish(dish)}
-          onOpenRecipe={() => handleOpenRecipe(selectedDish)}
+          onOpenRecipe={() => handleOpenRecipe(dish)}
         />
       ))}
-    </div>
+    </StyledResults>
   );
 }
 
