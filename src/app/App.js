@@ -9,11 +9,13 @@ import Recipe from "../pages/Recipe";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Favorites from "../pages/Favorites";
+import Settings from "../pages/Settings";
 
 const Grid = styled.div`
   display: grid;
   position: fixed;
-  grid-template-rows: 145px auto 50px;
+  grid-template-rows: 145px auto 60px;
   height: 100vh;
 `;
 
@@ -34,11 +36,11 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <Grid>
-        <Header />
-        <Content>
-          <Router>
+      <Router>
+        <GlobalStyle />
+        <Grid>
+          <Header />
+          <Content>
             <Switch>
               <Route
                 path="/"
@@ -53,11 +55,13 @@ function App() {
               />
               <Route path="/grocery" component={GroceryList} />
               <Route path="/recipe" render={props => <Recipe {...props} />} />
+              <Route path="/favorites" component={Favorites} />
+              <Route path="/settings" component={Settings} />
             </Switch>
-          </Router>
-        </Content>
-        <Footer />
-      </Grid>
+          </Content>
+          <Footer />
+        </Grid>
+      </Router>
     </>
   );
 }

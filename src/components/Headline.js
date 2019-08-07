@@ -25,7 +25,8 @@ function Headline({ size, ...props }) {
 }
 
 Headline.propTypes = {
-  size: PropTypes.oneOf(["S", "M", "L"])
+  size: PropTypes.oneOf(["S", "M", "L"]),
+  props: PropTypes.string.isRequired
 };
 
 Headline.defaultProps = {

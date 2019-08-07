@@ -20,9 +20,10 @@ function MealPlanner({ meals }) {
   function handleDeleteDish() {
     setDeleteItem();
   }
+
   return (
     <>
-      <Headline size="L" title="Meal Planner" />
+      <Headline title="Meal Planner" />
       <GroupedInfo>
         {meals.map(dish => (
           <>

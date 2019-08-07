@@ -17,12 +17,12 @@ function GetIdeas({ onMealSelect, history }) {
   }
 
   return (
-    <div>
+    <>
       <Search onFoodInput={handleDishChange} />
       <Results dishes={dishes} onMealSelect={handleMealSelect} />
       {/* <AddCarousel dishes={dishes} /> */}
       {/* <Suggestions /> */}
-    </div>
+    </>
   );
 }
 
