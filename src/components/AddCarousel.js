@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const StyledImage = styled.img`
-  margin-top: 50px;
+  margin-top: 140px;
   border-radius: 20px;
   width: 240px;
   box-shadow: 15px 5px 15px grey;

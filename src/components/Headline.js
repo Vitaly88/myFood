@@ -16,13 +16,12 @@ const StyledHeadline = styled.h1`
   font-family: "Arial", "Helvetica", sans-serif;
   color: white;
   position: fixed;
-  margin-top: -40px;
+  margin-top: -80px;
 `;
 
 const CenteredHeadline = styled.div`
   display: flex;
   justify-content: center;
-  z-index: 2;
 `;
 
 function Headline({ size, ...props }) {

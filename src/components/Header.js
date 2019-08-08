@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Headline from "../components/Headline";
+// import Headline from "../components/Headline";
 import PropTypes from "prop-types";
 import Oval from "../components/Oval";
 

@@ -5,7 +5,7 @@ import PopUpDatePicker from "./PopUpDatePicker";
 import GroupPicTitle from "./GroupPicTitle";
 
 const StyledResults = styled.div`
-  margin-top: 20px;
+  margin-top: 120px;
 `;
 
 function Results({ dishes, onMealSelect }) {
@@ -47,7 +47,6 @@ function Results({ dishes, onMealSelect }) {
         <GroupPicTitle
           name={selectedDish.name}
           imageSrc={selectedDish.imageSrc}
-          ingredients={selectedDish.ingredients}
           onOpenRecipe={() => handleOpenRecipe(selectedDish)}
         />
         {selectedDish && <PopUpDatePicker onTimeSelect={handleTimeSelect} />}

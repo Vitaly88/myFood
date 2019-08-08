@@ -9,21 +9,20 @@ const RecipeInput = styled.input`
   border-radius: 10px;
   font-size: 15px;
   font-family: "Arial", "Helvetica", sans-serif;
-  padding-left: 60px;
+  padding-left: 70px;
 `;
 
 const Form = styled.form`
-  margin-top: -110px;
+  margin-top: -130px;
   position: relative;
   display: flex;
-  padding: 25px 0;
   justify-content: center;
 `;
 
 const SearchIcon = styled.img`
   position: absolute;
-  left: 15px;
-  top: 20px;
+  left: 20px;
+  top: 23px;
   height: 40px;
   opacity: 0.8;
 `;

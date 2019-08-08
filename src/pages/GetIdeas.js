@@ -1,14 +1,25 @@
 import React from "react";
 import Search from "../components/Search";
 import Results from "../components/Results";
-//import AddCarousel from "../components/AddCarousel";
+import AddCarousel from "../components/AddCarousel";
+import { searchFood } from "../utils/edamam";
+import PropTypes from "prop-types";
+//import styled from "styled-components";
+
 //import Suggestions from "../components/Suggestions";
 
 function GetIdeas({ onMealSelect, history }) {
-  const [dishes, setDishes] = React.useState([]);
+  const [dishes, setDishes] = React.useState(null);
+  const [hits, setHits] = React.useState([]);
 
-  function handleDishChange(newDishes) {
-    setDishes(newDishes);
+  React.useEffect(() => {
+    searchFood("").then(result => setHits(result.slice(0, 10)));
+  }, []);
+
+  console.log(hits);
+
+  function handleDishChange(dishes) {
+    setDishes(dishes);
   }
 
   function handleMealSelect(meal) {
@@ -16,14 +27,32 @@ function GetIdeas({ onMealSelect, history }) {
     history.push("/planner");
   }
 
+  // function handleBackClick() {
+  //   setDishes(false);
+  // }
+
+  if (dishes) {
+    return (
+      <div>
+        <Search onFoodInput={handleDishChange} />
+        <Results dishes={dishes} onMealSelect={handleMealSelect} />
+      </div>
+    );
+  }
+
   return (
     <>
       <Search onFoodInput={handleDishChange} />
-      <Results dishes={dishes} onMealSelect={handleMealSelect} />
-      {/* <AddCarousel dishes={dishes} /> */}
+      <AddCarousel dishes={hits} />
       {/* <Suggestions /> */}
     </>
   );
 }
+
+GetIdeas.propTypes = {
+  onMealSelect: PropTypes.func.isRequired,
+  dishes: PropTypes.object.isRequired
+  // history: PropTypes.object.isRequired
+};
 
 export default GetIdeas;
