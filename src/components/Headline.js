@@ -16,12 +16,13 @@ const StyledHeadline = styled.h1`
   font-family: "Arial", "Helvetica", sans-serif;
   color: white;
   position: fixed;
-  margin-top: -80px;
+  margin-top: -40px;
 `;
 
 const CenteredHeadline = styled.div`
   display: flex;
   justify-content: center;
+  z-index: 2;
 `;
 
 function Headline({ size, ...props }) {
@@ -33,8 +34,7 @@ function Headline({ size, ...props }) {
 }
 
 Headline.propTypes = {
-  size: PropTypes.oneOf(["S", "M", "L"]),
-  props: PropTypes.string.isRequired
+  size: PropTypes.oneOf(["S", "M", "L"])
 };
 
 Headline.defaultProps = {

@@ -13,7 +13,7 @@ const Headlines = styled.div`
   margin: 10px;
 `;
 
-function MealPlanner({ meals }) {
+function MealPlanner({ meals, mealId }) {
   const [deleteItem, setDeleteItem] = React.useState([]);
 
   function handleDeleteDish() {
@@ -33,6 +33,7 @@ function MealPlanner({ meals }) {
                 <div>{dish.mealType.toUpperCase()}</div>
               </Headlines>
               <GroupPicTitle
+                key={mealId}
                 name={dish.title}
                 imageSrc={dish.image}
                 onDeleteDish={() => setDeleteItem()}

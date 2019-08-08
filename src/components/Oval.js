@@ -12,7 +12,7 @@ const StyledOval = styled.div`
 `;
 
 const CenteredOval = styled.div`
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: center;
 `;

@@ -15,7 +15,7 @@ import Settings from "../pages/Settings";
 const Grid = styled.div`
   display: grid;
   position: fixed;
-  grid-template-rows: 145px auto 60px;
+  grid-template-rows: 100px auto 60px;
   height: 100vh;
 `;
 

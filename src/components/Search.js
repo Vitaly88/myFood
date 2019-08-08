@@ -13,7 +13,7 @@ const RecipeInput = styled.input`
 `;
 
 const Form = styled.form`
-  margin-top: -150px;
+  margin-top: -110px;
   position: relative;
   display: flex;
   padding: 25px 0;

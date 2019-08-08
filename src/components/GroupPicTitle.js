@@ -49,15 +49,15 @@ function GroupPicTitle({
   onDeleteDish,
   mealId,
   onOpenRecipe,
-  recipe,
   ingredients
 }) {
   return (
-    <div key={mealId}>
-      <BoxItems onClick={() => onOpenRecipe()}>
+    <div>
+      <BoxItems key={mealId} onClick={() => onOpenRecipe()}>
         <IconImage alt={name} src={imageSrc} />
         <TextDescription>
           {name}
+          {ingredients}
           {/* {dishes.map(dish => (
               <DietTag>{dish.diet}</DietTag>
             ))} */}
@@ -72,7 +72,7 @@ function GroupPicTitle({
 
 GroupPicTitle.propTypes = {
   name: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired,
-  onSelectDish: PropTypes.func.isRequired
+  imageSrc: PropTypes.string.isRequired
+  //onSelectDish: PropTypes.func.isRequired
 };
 export default GroupPicTitle;
