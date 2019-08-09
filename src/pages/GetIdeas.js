@@ -2,7 +2,7 @@ import React from "react";
 import Search from "../components/Search";
 import Results from "../components/Results";
 import AddCarousel from "../components/AddCarousel";
-import { searchFood } from "../utils/edamam";
+import { searchFood } from "../utils/mealApi";
 import PropTypes from "prop-types";
 //import styled from "styled-components";
 

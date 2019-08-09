@@ -1,4 +1,6 @@
 export function searchFood(searchValue) {
+  const dummy = new Array(20).fill("");
+
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
   )
@@ -11,7 +13,12 @@ export function searchFood(searchValue) {
           imageSrc: dish.strMealThumb,
           diet: dish.strArea,
           recipe: dish.strInstructions,
-          ingredients: dish.strIngredient
+          ingredients: dummy
+            .map((_, index) => dish[`strIngredient${index}`])
+            .filter(Boolean),
+          measure: dummy
+            .map((_, index) => dish[`strMeasure${index}`])
+            .filter(Boolean)
         };
       });
       return dishes;

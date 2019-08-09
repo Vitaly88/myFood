@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { searchFood } from "../utils/edamam";
+import { searchFood } from "../utils/mealApi";
 import styled from "styled-components";
 
 const RecipeInput = styled.input`

@@ -8,11 +8,13 @@ import Slider from "react-slick";
 const StyledImage = styled.img`
   margin-top: 140px;
   border-radius: 20px;
-  width: 240px;
+  width: 220px;
   box-shadow: 15px 5px 15px grey;
+  filter: contrast(1.3);
+  filter: brightness(1.1);
 `;
 const CenteredContent = styled.div`
-  margin: 15px;
+  margin: 10px;
   position: relative;
 `;
 
@@ -23,7 +25,7 @@ const StyledText = styled.div`
   font-size: 20px;
   position: absolute;
   margin-top: -40px;
-  margin-left: 150px;
+  margin-left: 120px;
 `;
 
 function AddCarousel({ dishes }) {
@@ -33,7 +35,7 @@ function AddCarousel({ dishes }) {
       className="center"
       centerMode={true}
       infinite={true}
-      centerPadding={"50px"}
+      centerPadding={"60px"}
       autoplay={true}
       autoplaySpeed={5000}
       arrows={false}
