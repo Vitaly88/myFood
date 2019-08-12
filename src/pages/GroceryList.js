@@ -5,31 +5,45 @@ import Headline from "../components/Headline";
 
 const StyledIngredients = styled.div`
   color: #5938e0;
+  margin-left: 20px;
 `;
-function GroceryList({ meals }) {
+
+const StyledContent = styled.td`
+  text-align: center;
+`;
+
+const StyledHead = styled.thead`
+  font-size: 24px;
+`;
+function GroceryList({ meals, mealId }) {
+  const ingredients = meals.map(meal => meal.ingredients).flat();
+  const measure = meals.map(meal => meal.measure).flat();
   return (
     <>
-      <Headline size="L">MealPlanner</Headline>
+      <Headline size="L">Grocery List</Headline>
+
       <StyledIngredients>
         <table>
-          <thead>
+          <StyledHead>
             <tr>
               <th>Ingredients</th>
-              <th>Measure</th>
+              <th>Amount</th>
             </tr>
-          </thead>
-          {meals.map(dish => (
-            <tbody>
-              <tr>
-                <td>
-                  {dish.ingredients.map(item => (
-                    <li>{item}</li>
-                  ))}
-                </td>
-                <td />
-              </tr>
-            </tbody>
-          ))}
+          </StyledHead>
+          <tbody>
+            <tr>
+              <td>
+                {ingredients.map(elem => (
+                  <div key={mealId}>{elem}</div>
+                ))}
+              </td>
+              <StyledContent>
+                {measure.map(elem => (
+                  <div key={mealId}>{elem}</div>
+                ))}
+              </StyledContent>
+            </tr>
+          </tbody>
         </table>
       </StyledIngredients>
     </>

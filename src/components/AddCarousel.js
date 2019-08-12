@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import Recipe from "../pages/Recipe";
-import Results from "../components/Results";
+// import Results from "../components/Results";
 
 const StyledImage = styled.img`
   margin-top: 140px;
@@ -31,26 +31,14 @@ const StyledText = styled.div`
   margin-left: 100px;
 `;
 
-function AddCarousel({ dishes, name }) {
+function AddCarousel({ dishes }) {
   const [openRecipe, setOpenRecipe] = React.useState(null);
 
   // if (openRecipe) {
-  //   console.log(dishes.find(elem => elem.name));
-  //   return dishes.find(elem => (
-  //     <>
-  //       <div>{elem.name === name}</div>
-  //       {/* <img alt={elem.name} src={elem.imageSrc} /> */}
-  //     </>
-  //   ));
+  //   return dishes.find(elem => <div>{elem.name}</div>);
   // }
 
-  function handleClick(meals) {
-    // const recipe = {
-    //   mealId: dishes.mealId,
-    //   title: dishes.title,
-    //   image: dishes.imageSrc
-    // };
-    //console.log(meals);
+  function handleClick(dishes) {
     setOpenRecipe(dishes);
   }
   return (

@@ -36,7 +36,8 @@ function Results({ dishes, onMealSelect }) {
       date: result.day.toLocaleDateString("en-US", options),
       title: selectedDish.name,
       image: selectedDish.imageSrc,
-      ingredients: selectedDish.ingredients
+      ingredients: selectedDish.ingredients,
+      measure: selectedDish.measure
     };
     onMealSelect(newMeal);
   }

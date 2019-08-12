@@ -24,6 +24,7 @@ function GetIdeas({ onMealSelect, history }) {
   function handleMealSelect(meal) {
     onMealSelect(meal);
     history.push("/planner");
+    //history.push("/grocery");
   }
 
   // function handleBackClick() {
@@ -49,8 +50,8 @@ function GetIdeas({ onMealSelect, history }) {
 }
 
 GetIdeas.propTypes = {
-  onMealSelect: PropTypes.func.isRequired,
-  dishes: PropTypes.object.isRequired
+  onMealSelect: PropTypes.func.isRequired
+  // dishes: PropTypes.array.isRequired
   // history: PropTypes.object.isRequired
 };
 
