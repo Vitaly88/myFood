@@ -57,7 +57,10 @@ function App() {
                 path="/grocery"
                 render={props => <GroceryList meals={meals} {...props} />}
               />
-              <Route path="/recipe" render={props => <Recipe {...props} />} />
+              <Route
+                path="/recipe"
+                render={props => <Recipe meals={meals} {...props} />}
+              />
               <Route path="/favorites" component={Favorites} />
               <Route path="/settings" component={Settings} />
             </Switch>

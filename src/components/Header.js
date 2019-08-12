@@ -12,7 +12,7 @@ const ContainerHeader = styled.div`
   /* z-index: 1; */
 `;
 
-function Header({ title }) {
+function Header({ props }) {
   return (
     <ContainerHeader>
       <Oval />

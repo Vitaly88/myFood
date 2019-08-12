@@ -8,8 +8,13 @@ const StyledOval = styled.div`
   width: 695px;
   top: -450px;
   background-color: #5938e0;
+
   border-radius: 50%;
 `;
+
+// const PicOval = styled.div`
+//   background-image: url(${props => props.img});
+// `;
 
 const CenteredOval = styled.div`
   position: fixed;

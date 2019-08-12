@@ -20,7 +20,7 @@ const TextDescription = styled.div`
   color: #5938e0;
   align-items: left;
   font-family: "Arial", "Helvetica", sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   margin: 5px;
 `;

@@ -13,6 +13,13 @@ const Headlines = styled.div`
   margin: 10px;
 `;
 
+const StyledText = styled.div`
+  font-size: 14px;
+`;
+const StyledDate = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
 function MealPlanner({ meals, mealId }) {
   const [deleteItem, setDeleteItem] = React.useState([]);
 
@@ -28,9 +35,9 @@ function MealPlanner({ meals, mealId }) {
           .map(dish => (
             <>
               <Headlines>
-                <h3>{dish.date}</h3>
+                <StyledDate>{dish.date}</StyledDate>
                 <br />
-                <div>{dish.mealType.toUpperCase()}</div>
+                <StyledText>{dish.mealType.toUpperCase()}</StyledText>
               </Headlines>
               <GroupPicTitle
                 key={mealId}

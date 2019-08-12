@@ -5,8 +5,7 @@ import AddCarousel from "../components/AddCarousel";
 import { searchFood } from "../utils/mealApi";
 import PropTypes from "prop-types";
 //import styled from "styled-components";
-
-//import Suggestions from "../components/Suggestions";
+import Suggestions from "../components/Suggestions";
 
 function GetIdeas({ onMealSelect, history }) {
   const [dishes, setDishes] = React.useState(null);
@@ -16,7 +15,7 @@ function GetIdeas({ onMealSelect, history }) {
     searchFood("").then(result => setHits(result.slice(0, 10)));
   }, []);
 
-  console.log(hits);
+  //console.log(hits);
 
   function handleDishChange(dishes) {
     setDishes(dishes);
@@ -44,7 +43,7 @@ function GetIdeas({ onMealSelect, history }) {
     <>
       <Search onFoodInput={handleDishChange} />
       <AddCarousel dishes={hits} />
-      {/* <Suggestions /> */}
+      <Suggestions />
     </>
   );
 }

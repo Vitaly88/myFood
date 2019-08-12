@@ -2,7 +2,16 @@ import React from "react";
 //import styled from "styled-components";
 import Headline from "../components/Headline";
 
-function Recipe({ dishes, mealId, name, imageSrc, diet, recipe, ingredients }) {
+function Recipe({
+  meals,
+  dishes,
+  mealId,
+  name,
+  imageSrc,
+  diet,
+  recipe,
+  ingredients
+}) {
   return (
     <>
       <Headline size="L">{name}</Headline>

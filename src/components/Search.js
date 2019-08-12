@@ -10,6 +10,7 @@ const RecipeInput = styled.input`
   font-size: 15px;
   font-family: "Arial", "Helvetica", sans-serif;
   padding-left: 70px;
+  border: none;
 `;
 
 const Form = styled.form`
@@ -21,8 +22,8 @@ const Form = styled.form`
 
 const SearchIcon = styled.img`
   position: absolute;
-  left: 20px;
-  top: 23px;
+  left: 25px;
+  top: 26px;
   height: 40px;
   opacity: 0.8;
 `;
@@ -30,7 +31,7 @@ const SearchIcon = styled.img`
 const InputContainer = styled.div`
   position: fixed;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
 `;
 
 function Search({ onFoodInput }) {
