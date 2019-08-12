@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { searchFood } from "../utils/edamam";
+import { searchFood } from "../utils/mealApi";
 import styled from "styled-components";
 
 const RecipeInput = styled.input`
@@ -9,24 +9,29 @@ const RecipeInput = styled.input`
   border-radius: 10px;
   font-size: 15px;
   font-family: "Arial", "Helvetica", sans-serif;
-  padding-left: 60px;
+  padding-left: 70px;
+  border: none;
 `;
 
 const Form = styled.form`
+  margin-top: -130px;
   position: relative;
-  padding: 25px 10px;
+  display: flex;
+  justify-content: center;
 `;
 
 const SearchIcon = styled.img`
   position: absolute;
-  left: 10px;
-  top: 12px;
+  left: 25px;
+  top: 26px;
   height: 40px;
   opacity: 0.8;
 `;
 
 const InputContainer = styled.div`
-  position: relative;
+  position: fixed;
+  width: 100%;
+  padding: 15px;
 `;
 
 function Search({ onFoodInput }) {

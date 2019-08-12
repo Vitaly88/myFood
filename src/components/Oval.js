@@ -4,22 +4,20 @@ import styled from "styled-components";
 
 const StyledOval = styled.div`
   position: absolute;
-  height: 100px;
-  width: 100vw;
+  height: 595px;
+  width: 695px;
+  top: -450px;
   background-color: #5938e0;
-  &:before {
-    content: "";
-    background: #5938e0;
-    position: absolute;
-    bottom: -47px;
-    width: 100%;
-    height: 90px;
-    border-radius: 50%;
-  }
+
+  border-radius: 50%;
 `;
 
+// const PicOval = styled.div`
+//   background-image: url(${props => props.img});
+// `;
+
 const CenteredOval = styled.div`
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: center;
 `;

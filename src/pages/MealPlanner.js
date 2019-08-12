@@ -1,58 +1,53 @@
 import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
-import Oval from "../components/Oval";
-
-const PlannerContainer = styled(Headline)`
-  color: white;
-`;
-
-const StyledImage = styled.img`
-  width: 110px;
-  height: 110px;
-  box-shadow: 15px 15px 30px grey;
-  border-radius: 20px;
-  margin: 20px;
-  filter: contrast(110%);
-  filter: brightness(110%);
-`;
+import GroupPicTitle from "../components/GroupPicTitle";
 
 const GroupedInfo = styled.div`
+  /* position: relative; */
+  margin: 10px;
   color: #5938e0;
-  align-items: center;
-  font-family: "Arial", "Helvetica", sans-serif;
-  font-size: 17px;
-  font-weight: bold;
+`;
+
+const Headlines = styled.div`
   margin: 10px;
 `;
 
-const MealList = styled.div`
-  margin: 25px;
-  color: #5938e0;
+const StyledText = styled.div`
+  font-size: 14px;
 `;
+const StyledDate = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+function MealPlanner({ meals, mealId }) {
+  const [deleteItem, setDeleteItem] = React.useState([]);
 
-function MealPlanner({ meals }) {
-  console.log(meals);
+  function handleDeleteDish() {
+    setDeleteItem();
+  }
+
   return (
     <>
-      <Oval />
-      <PlannerContainer size="L" title="Meal Planner" />
-      <br />
-      <br />
-      <br />
+      <Headline size="L">Meal Planner</Headline>
       <GroupedInfo>
-        {meals.map(dish => (
-          <>
-            <div>{dish.date}</div>
-            <Headline size="M" title={dish.mealType}>
-              {dish.mealType}
-            </Headline>
-            <div key={dish.title}>
-              <StyledImage alt={dish.title} src={dish.image} />
-              <MealList>{dish.title}</MealList>
-            </div>
-          </>
-        ))}
+        {meals
+          .map(dish => (
+            <>
+              <Headlines>
+                <StyledDate>{dish.date}</StyledDate>
+                <br />
+                <StyledText>{dish.mealType.toUpperCase()}</StyledText>
+              </Headlines>
+              <GroupPicTitle
+                key={mealId}
+                name={dish.title}
+                imageSrc={dish.image}
+                onDeleteDish={() => setDeleteItem()}
+              />
+            </>
+          ))
+          .slice(0, 21)}
       </GroupedInfo>
     </>
   );

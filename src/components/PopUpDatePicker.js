@@ -17,10 +17,10 @@ const PopUpForm = styled.form`
   background-color: white;
   border: 1px solid #5938e0;
   width: 100vw;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   opacity: 0.9;
-  bottom: 0;
-  /* filter: grayscale(0.7) saturate(0.8); */
+  bottom: 60px;
   animation: ${fadeIn} 1s 1 both;
   position: fixed;
 `;
@@ -37,6 +37,7 @@ const AddMealButton = styled.button`
   background-color: #5938e0;
   color: white;
   font-family: "Arial", "Helvetica", sans-serif;
+  margin-bottom: 20px;
 `;
 
 function PopUpDatePicker({ onTimeSelect }) {
