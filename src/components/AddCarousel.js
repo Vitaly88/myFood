@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-// import { Redirect } from "react-router-dom";
-import Recipe from "../pages/Recipe";
-// import Results from "../components/Results";
+import { withRouter } from "react-router-dom";
+//import Results from "../components/Results";
 
 const StyledImage = styled.img`
   margin-top: 140px;
@@ -31,16 +30,11 @@ const StyledText = styled.div`
   margin-left: 100px;
 `;
 
-function AddCarousel({ dishes }) {
-  const [openRecipe, setOpenRecipe] = React.useState(null);
-
-  // if (openRecipe) {
-  //   return dishes.find(elem => <div>{elem.name}</div>);
-  // }
-
-  function handleClick(dishes) {
-    setOpenRecipe(dishes);
+function AddCarousel({ dishes, history }) {
+  function handlePictureLink(dish) {
+    history.push(`recipe/${dish.mealId}`);
   }
+
   return (
     <Slider
       slidesToShow={1}
@@ -55,7 +49,10 @@ function AddCarousel({ dishes }) {
       pauseOnHover={true}
     >
       {dishes.map(dish => (
-        <CenteredContent onClick={handleClick} key={dish.mealId}>
+        <CenteredContent
+          onClick={() => handlePictureLink(dish)}
+          key={dish.mealId}
+        >
           <StyledImage alt={dish.name} src={dish.imageSrc} />
           <StyledText>{dish.name}</StyledText>
         </CenteredContent>
@@ -67,4 +64,4 @@ function AddCarousel({ dishes }) {
 AddCarousel.propTypes = {
   dishes: PropTypes.array.isRequired
 };
-export default AddCarousel;
+export default withRouter(AddCarousel);

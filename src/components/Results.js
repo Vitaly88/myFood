@@ -13,14 +13,9 @@ function Results({ dishes, onMealSelect }) {
   //   return <div>Sorry, I can't find anything.</div>;
   // }
   const [selectedDish, setSelectedDish] = React.useState(null);
-  const [openRecipe, setOpenRecipe] = React.useState(null);
 
   function handleSelectDish(dish) {
     setSelectedDish(dish);
-  }
-
-  function handleOpenRecipe(dish) {
-    setOpenRecipe(dish);
   }
 
   const options = {
@@ -48,24 +43,11 @@ function Results({ dishes, onMealSelect }) {
         <GroupPicTitle
           name={selectedDish.name}
           imageSrc={selectedDish.imageSrc}
-          onOpenRecipe={() => handleOpenRecipe(selectedDish)}
         />
         {selectedDish && <PopUpDatePicker onTimeSelect={handleTimeSelect} />}
       </StyledResults>
     );
   }
-
-  // if (openRecipe) {
-  //   return (
-  //     <>
-  //       <img alt={dish.name} src={dish.imageSrc} />
-  //       <h2>Ingredients</h2>
-  //       <div>{dish.ingredients}</div>
-  //       <h2>Preparation</h2>
-  //       <div>{dish.preparation}</div>
-  //     </>
-  //   );
-  // }
 
   return (
     <StyledResults>
@@ -74,7 +56,6 @@ function Results({ dishes, onMealSelect }) {
           name={dish.name}
           imageSrc={dish.imageSrc}
           onSelectDish={() => handleSelectDish(dish)}
-          onOpenRecipe={() => handleOpenRecipe(dish)}
         />
       ))}
     </StyledResults>

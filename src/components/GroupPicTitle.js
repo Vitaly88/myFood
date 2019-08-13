@@ -48,13 +48,22 @@ function GroupPicTitle({
   onSelectDish,
   onDeleteDish,
   mealId,
-  onOpenRecipe,
-  ingredients
+  ingredients,
+  meals,
+  history
 }) {
+  function handlePictureLink() {
+    console.log(mealId);
+    //history.push(`recipe/${dish.mealId}`);
+  }
   return (
     <div>
-      <BoxItems key={mealId} onClick={() => onOpenRecipe()}>
-        <IconImage alt={name} src={imageSrc} />
+      <BoxItems key={mealId}>
+        <IconImage
+          alt={name}
+          src={imageSrc}
+          onClick={() => handlePictureLink()}
+        />
         <TextDescription>
           {name}
           {ingredients}
@@ -62,7 +71,6 @@ function GroupPicTitle({
               <DietTag>{dish.diet}</DietTag>
             ))} */}
         </TextDescription>
-
         {onSelectDish && <AddButton onClick={() => onSelectDish()} />}
         {onDeleteDish && <DeleteButton onClick={() => onDeleteDish()} />}
       </BoxItems>

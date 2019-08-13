@@ -24,7 +24,6 @@ function GetIdeas({ onMealSelect, history }) {
   function handleMealSelect(meal) {
     onMealSelect(meal);
     history.push("/planner");
-    //history.push("/grocery");
   }
 
   // function handleBackClick() {

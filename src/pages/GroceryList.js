@@ -15,6 +15,11 @@ const StyledContent = styled.td`
 const StyledHead = styled.thead`
   font-size: 24px;
 `;
+
+const StyledBack = styled.div`
+  background-color: white;
+  padding: 5px;
+`;
 function GroceryList({ meals, mealId }) {
   const ingredients = meals.map(meal => meal.ingredients).flat();
   const measure = meals.map(meal => meal.measure).flat();
@@ -34,12 +39,12 @@ function GroceryList({ meals, mealId }) {
             <tr>
               <td>
                 {ingredients.map(elem => (
-                  <div key={mealId}>{elem}</div>
+                  <StyledBack key={mealId}>{elem}</StyledBack>
                 ))}
               </td>
               <StyledContent>
                 {measure.map(elem => (
-                  <div key={mealId}>{elem}</div>
+                  <StyledBack key={mealId}>{elem}</StyledBack>
                 ))}
               </StyledContent>
             </tr>
