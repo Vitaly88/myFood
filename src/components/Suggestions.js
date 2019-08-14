@@ -17,7 +17,7 @@ const StyledImage = styled.img`
   filter: brightness(1.1);
 `;
 const CenteredContent = styled.div`
-  margin: 10px 10px 25px 20px;
+  margin: 5px 10px 30px 20px;
   position: relative;
 `;
 
@@ -25,8 +25,9 @@ const StyledText = styled.div`
   color: #5938e0;
   font-family: "Arial", "Helvetica", sans-serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   position: absolute;
+  margin: 5px;
 `;
 
 function Suggestions({ dishes, history }) {
@@ -37,9 +38,9 @@ function Suggestions({ dishes, history }) {
   return (
     <Slider
       slidesToShow={2}
-      className="center"
+      slidesToScroll={2}
+      infinite={true}
       leftMode={true}
-      centerPadding={"50px"}
       autoplay={false}
       arrows={false}
     >

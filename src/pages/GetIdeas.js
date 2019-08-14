@@ -4,27 +4,47 @@ import Results from "../components/Results";
 import AddCarousel from "../components/AddCarousel";
 import { searchFood, getCategory } from "../utils/mealApi";
 import PropTypes from "prop-types";
-//import styled from "styled-components";
+import styled from "styled-components";
 import Suggestions from "../components/Suggestions";
+
+const StyledSubHeadlines = styled.h2`
+  color: #5938e0;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  margin-left: 20px;
+`;
 
 function GetIdeas({ onMealSelect, history }) {
   const [dishes, setDishes] = React.useState(null);
   const [hits, setHits] = React.useState([]);
-  const [suggestions, setSuggestions] = React.useState([]);
-  const [suggestions2, setSuggestions2] = React.useState([]);
+  const [breakfast, setBreakfast] = React.useState([]);
+  const [lunch, setLunch] = React.useState([]);
+  const [dinner, setDinner] = React.useState([]);
+  const [dessert, setDessert] = React.useState([]);
 
   React.useEffect(() => {
     searchFood("salad").then(result => setHits(result.slice(0, 10)));
   }, []);
 
   React.useEffect(() => {
-    getCategory("seafood").then(result => setSuggestions(result.slice(0, 5)));
+    getCategory("breakfast").then(result => setBreakfast(result.slice(0, 6)));
   }, []);
 
   React.useEffect(() => {
-    getCategory("vegetarian").then(result =>
-      setSuggestions2(result.slice(0, 5))
+    getCategory("beef", "vegetarian").then(result =>
+      setLunch(result.slice(0, 6))
     );
+  }, []);
+
+  React.useEffect(() => {
+    getCategory("chicken", "lamb").then(result =>
+      setDinner(result.slice(0, 6))
+    );
+  }, []);
+
+  React.useEffect(() => {
+    getCategory("dessert").then(result => setDessert(result.slice(0, 6)));
   }, []);
 
   function handleDishChange(dishes) {
@@ -53,10 +73,14 @@ function GetIdeas({ onMealSelect, history }) {
     <>
       <Search onFoodInput={handleDishChange} />
       <AddCarousel dishes={hits} />
-      <h2>This week recommendations</h2>
-      <Suggestions dishes={suggestions} />
-      <h2>Vegetarian Dishes</h2>
-      <Suggestions dishes={suggestions2} />
+      <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
+      <Suggestions dishes={breakfast} />
+      <StyledSubHeadlines>Lunch</StyledSubHeadlines>
+      <Suggestions dishes={lunch} />
+      <StyledSubHeadlines>Dinner</StyledSubHeadlines>
+      <Suggestions dishes={dinner} />
+      <StyledSubHeadlines>Desserts</StyledSubHeadlines>
+      <Suggestions dishes={dessert} />
     </>
   );
 }

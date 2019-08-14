@@ -21,14 +21,16 @@ const CenteredContent = styled.div`
   position: relative;
 `;
 
-const StyledText = styled.div`
-  color: #5938e0;
+const StyledText = styled.button`
+  color: white;
   font-family: "Arial", "Helvetica", sans-serif;
-  font-weight: bold;
-  font-size: 25px;
+  font-size: 15px;
   position: absolute;
   margin-top: -40px;
-  margin-left: 100px;
+  margin-left: 20px;
+  border-radius: 7px;
+  background-color: #5938e0;
+  height: 30px;
 `;
 
 function AddCarousel({ dishes, history }) {

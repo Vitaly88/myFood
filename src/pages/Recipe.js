@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
 import { getMeal } from "../utils/mealApi";
+import { truncate } from "../utils/truncate";
 
 const StyledImage = styled.img`
   width: 220px;
@@ -42,7 +43,7 @@ function Recipe({ match }) {
 
   return (
     <>
-      <Headline size="L">{meal.name}</Headline>
+      <Headline size="L">{truncate(meal.name, 2)}</Headline>
       <StyledContent key={meal.mealId}>
         <StyledImage alt={meal.name} src={meal.imageSrc} />
         <StyledHeadlines>Ingredients</StyledHeadlines>
