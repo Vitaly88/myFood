@@ -17,7 +17,7 @@ const StyledImage = styled.img`
   filter: brightness(1.1);
 `;
 const CenteredContent = styled.div`
-  margin: 5px 10px 30px 20px;
+  margin: 5px 5px 30px 23px;
   position: relative;
 `;
 

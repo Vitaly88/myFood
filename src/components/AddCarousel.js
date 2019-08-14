@@ -30,7 +30,8 @@ const StyledText = styled.button`
   margin-left: 20px;
   border-radius: 7px;
   background-color: #5938e0;
-  height: 30px;
+  height: 25px;
+  border: none;
 `;
 
 function AddCarousel({ dishes, history }) {
@@ -41,7 +42,6 @@ function AddCarousel({ dishes, history }) {
   return (
     <Slider
       slidesToShow={1}
-      className="center"
       centerMode={true}
       infinite={true}
       centerPadding={"60px"}

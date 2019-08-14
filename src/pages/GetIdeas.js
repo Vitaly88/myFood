@@ -7,13 +7,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Suggestions from "../components/Suggestions";
 import { appearFromRight } from "../utils/animations";
+import { withRouter } from "react-router-dom";
 
 const StyledSubHeadlines = styled.h2`
   color: #5938e0;
   font-family: "Arial", "Helvetica", sans-serif;
   font-weight: bold;
   font-size: 28px;
-  margin-left: 20px;
+  margin-left: 23px;
 `;
 
 const StyledButton = styled.button`
@@ -45,6 +46,11 @@ function GetIdeas({ onMealSelect, history }) {
   const [dinner, setDinner] = React.useState([]);
   const [dessert, setDessert] = React.useState([]);
 
+  function handleMealSelect(meal) {
+    onMealSelect(meal);
+    history.push("/planner");
+  }
+
   React.useEffect(() => {
     searchFood("salad").then(result => setHits(result.slice(0, 10)));
   }, []);
@@ -54,28 +60,21 @@ function GetIdeas({ onMealSelect, history }) {
   }, []);
 
   React.useEffect(() => {
-    getCategory("beef", "vegetarian").then(result =>
-      setLunch(result.slice(0, 6))
-    );
+    getCategory("vegetarian").then(result => setLunch(result.slice(0, 10)));
   }, []);
 
   React.useEffect(() => {
     getCategory("chicken", "lamb").then(result =>
-      setDinner(result.slice(0, 6))
+      setDinner(result.slice(0, 10))
     );
   }, []);
 
   React.useEffect(() => {
-    getCategory("dessert").then(result => setDessert(result.slice(0, 6)));
+    getCategory("dessert").then(result => setDessert(result.slice(0, 10)));
   }, []);
 
   function handleDishChange(dishes) {
     setDishes(dishes);
-  }
-
-  function handleMealSelect(meal) {
-    onMealSelect(meal);
-    history.push("/planner");
   }
 
   function handleBackClick() {
@@ -110,8 +109,8 @@ function GetIdeas({ onMealSelect, history }) {
 
 GetIdeas.propTypes = {
   onMealSelect: PropTypes.func.isRequired,
-  dishes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  dishes: PropTypes.object.isRequired
+  //history: PropTypes.object.isRequired
 };
 
-export default GetIdeas;
+export default withRouter(GetIdeas);
