@@ -6,6 +6,7 @@ import { searchFood, getCategory } from "../utils/mealApi";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Suggestions from "../components/Suggestions";
+import { appearFromRight } from "../utils/animations";
 
 const StyledSubHeadlines = styled.h2`
   color: #5938e0;
@@ -13,6 +14,27 @@ const StyledSubHeadlines = styled.h2`
   font-weight: bold;
   font-size: 28px;
   margin-left: 20px;
+`;
+
+const StyledButton = styled.button`
+  height: 25px;
+  width: 75px;
+  background-color: #a11035;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  position: fixed;
+  margin-top: 130px;
+  right: 0;
+  border: none;
+  box-shadow: 5px 5px 30 grey;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  animation: ${appearFromRight} 2s 1 both;
+`;
+
+const StyledContainer = styled.div`
+  position: relative;
 `;
 
 function GetIdeas({ onMealSelect, history }) {
@@ -56,16 +78,17 @@ function GetIdeas({ onMealSelect, history }) {
     history.push("/planner");
   }
 
-  // function handleBackClick() {
-  //   setDishes(false);
-  // }
+  function handleBackClick() {
+    setDishes(false);
+  }
 
   if (dishes) {
     return (
-      <div>
+      <StyledContainer>
         <Search onFoodInput={handleDishChange} />
+        <StyledButton onClick={handleBackClick}>Go Back</StyledButton>
         <Results dishes={dishes} onMealSelect={handleMealSelect} />
-      </div>
+      </StyledContainer>
     );
   }
 
