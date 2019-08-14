@@ -41,6 +41,7 @@ function Results({ dishes, onMealSelect }) {
     return (
       <StyledResults>
         <GroupPicTitle
+          dish={selectedDish}
           name={selectedDish.name}
           imageSrc={selectedDish.imageSrc}
         />
@@ -53,6 +54,7 @@ function Results({ dishes, onMealSelect }) {
     <StyledResults>
       {dishes.map(dish => (
         <GroupPicTitle
+          dish={dish}
           name={dish.name}
           imageSrc={dish.imageSrc}
           onSelectDish={() => handleSelectDish(dish)}

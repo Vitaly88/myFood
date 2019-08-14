@@ -3,37 +3,36 @@ import styled from "styled-components";
 import Headline from "../components/Headline";
 import { getMeal } from "../utils/mealApi";
 
+const StyledImage = styled.img`
+  width: 220px;
+  border-radius: 20px;
+  box-shadow: 15px 15px 30px grey;
+`;
+const StyledContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  color: #5938e0;
+`;
+
+const StyledText = styled.div`
+  text-indent: 30px;
+  line-height: 1.5;
+  text-justify: auto;
+  text-align: justify;
+`;
+
+const StyledHeadlines = styled.h2`
+  font-family: Arial, Helvetica, sans-serif;
+`;
 function Recipe({ match }) {
   const [meal, setMeal] = React.useState(null);
 
-  const StyledImage = styled.img`
-    width: 220px;
-    border-radius: 20px;
-    box-shadow: 15px 15px 30px grey;
-  `;
-  const StyledContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 30px;
-    color: #5938e0;
-  `;
-
-  const StyledText = styled.div`
-    text-indent: 30px;
-    line-height: 1.5;
-    text-justify: auto;
-    text-align: justify;
-  `;
-
-  const StyledHeadlines = styled.h2`
-    font-family: Arial, Helvetica, sans-serif;
-  `;
   React.useEffect(() => {
     getMeal(match.params.id).then(result => {
       setMeal(result);
-      console.log(result);
     });
   }, [match.params.id]);
 

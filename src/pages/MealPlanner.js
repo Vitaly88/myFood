@@ -21,11 +21,11 @@ const StyledDate = styled.div`
   font-weight: bold;
 `;
 function MealPlanner({ meals, mealId }) {
-  const [deleteItem, setDeleteItem] = React.useState([]);
+  //const [deleteItem, setDeleteItem] = React.useState([]);
 
-  function handleDeleteDish() {
-    setDeleteItem();
-  }
+  // function handleDeleteDish() {
+  //   setDeleteItem();
+  // }
 
   return (
     <>
@@ -41,9 +41,10 @@ function MealPlanner({ meals, mealId }) {
               </Headlines>
               <GroupPicTitle
                 key={mealId}
+                dish={dish}
                 name={dish.title}
                 imageSrc={dish.image}
-                onDeleteDish={() => setDeleteItem()}
+                // onDeleteDish={() => setDeleteItem()}
               />
             </>
           ))

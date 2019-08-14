@@ -44,6 +44,23 @@ export function getMeal(id) {
     });
 }
 
+export function getCategory(searchValue) {
+  return fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?c=${searchValue}`
+  )
+    .then(res => res.json())
+    .then(result => {
+      const dishes = result.meals.map(dish => {
+        return {
+          mealId: dish.idMeal,
+          name: dish.strMeal,
+          imageSrc: dish.strMealThumb
+        };
+      });
+      return dishes;
+    });
+}
+
 // [
 //   {
 //     ingredient: dummy.map((_, index) => dish[`strIngredient${index}`]),

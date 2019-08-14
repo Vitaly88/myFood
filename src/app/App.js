@@ -46,7 +46,7 @@ function App() {
                 path="/"
                 exact
                 render={props => (
-                  <GetIdeas onMealSelect={handleMealSelect} {...props} />
+                  <GetIdeas onMealSelect={handleMealSelect} meals={meals} />
                 )}
               />
               <Route

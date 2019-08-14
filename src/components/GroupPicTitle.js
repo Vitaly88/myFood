@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import AddButton from "../components/AddButton";
 import DeleteButton from "../components/DeleteButton";
+import { withRouter } from "react-router-dom";
 
 const IconImage = styled.img`
   width: 110px;
@@ -49,12 +50,11 @@ function GroupPicTitle({
   onDeleteDish,
   mealId,
   ingredients,
-  meals,
+  dish,
   history
 }) {
   function handlePictureLink() {
-    console.log(mealId);
-    //history.push(`recipe/${dish.mealId}`);
+    history.push(`recipe/${dish.mealId}`);
   }
   return (
     <div>
@@ -62,7 +62,7 @@ function GroupPicTitle({
         <IconImage
           alt={name}
           src={imageSrc}
-          onClick={() => handlePictureLink()}
+          onClick={() => handlePictureLink(dish)}
         />
         <TextDescription>
           {name}
@@ -83,4 +83,4 @@ GroupPicTitle.propTypes = {
   imageSrc: PropTypes.string.isRequired
   //onSelectDish: PropTypes.func.isRequired
 };
-export default GroupPicTitle;
+export default withRouter(GroupPicTitle);

@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
+import { truncate } from "../utils/truncate";
 //import Results from "../components/Results";
 
 const StyledImage = styled.img`
@@ -54,7 +55,7 @@ function AddCarousel({ dishes, history }) {
           key={dish.mealId}
         >
           <StyledImage alt={dish.name} src={dish.imageSrc} />
-          <StyledText>{dish.name}</StyledText>
+          <StyledText>{truncate(dish.name, 2)}</StyledText>
         </CenteredContent>
       ))}
     </Slider>
