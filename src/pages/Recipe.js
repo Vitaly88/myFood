@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Headline from "../components/Headline";
 import { getMeal } from "../utils/mealApi";
 import { truncate } from "../utils/truncate";
+import LikeButton from "../components/LikeButton";
 
 const StyledImage = styled.img`
   width: 220px;
@@ -46,6 +47,7 @@ function Recipe({ match }) {
       <Headline size="L">{truncate(meal.name, 2)}</Headline>
       <StyledContent key={meal.mealId}>
         <StyledImage alt={meal.name} src={meal.imageSrc} />
+        <LikeButton icon="fa-heart" />
         <StyledHeadlines>Ingredients</StyledHeadlines>
         <table>
           <thead>
@@ -63,7 +65,7 @@ function Recipe({ match }) {
               </td>
               <td>
                 {meal.measure.map(elem => (
-                  <div key={meal.measure}>{elem}</div>
+                  <div key={meal.name}>{elem}</div>
                 ))}
               </td>
             </tr>

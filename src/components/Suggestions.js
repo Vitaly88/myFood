@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
 import { truncate } from "../utils/truncate";
+import LikeButton from "./LikeButton";
 
 const StyledImage = styled.img`
   margin-top: 0;
@@ -50,6 +51,7 @@ function Suggestions({ dishes, history }) {
           key={dish.mealId}
         >
           <StyledImage alt={dish.name} src={dish.imageSrc} />
+          <LikeButton icon="fa-heart" />
           <StyledText>{truncate(dish.name, 2)}</StyledText>
         </CenteredContent>
       ))}

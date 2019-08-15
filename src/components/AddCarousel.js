@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
 import { truncate } from "../utils/truncate";
+import LikeButton from "../components/LikeButton";
 //import Results from "../components/Results";
 
 const StyledImage = styled.img`
@@ -19,6 +20,12 @@ const StyledImage = styled.img`
 const CenteredContent = styled.div`
   margin: 15px;
   position: relative;
+`;
+
+const StyledLike = styled(LikeButton)`
+  position: relative;
+  margin-top: -100px;
+  left: 20px;
 `;
 
 const StyledText = styled.button`
@@ -57,7 +64,9 @@ function AddCarousel({ dishes, history }) {
           key={dish.mealId}
         >
           <StyledImage alt={dish.name} src={dish.imageSrc} />
+
           <StyledText>{truncate(dish.name, 2)}</StyledText>
+          <StyledLike icon="fa-heart" />
         </CenteredContent>
       ))}
     </Slider>

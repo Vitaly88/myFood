@@ -108,8 +108,8 @@ function GetIdeas({ onMealSelect, history }) {
 }
 
 GetIdeas.propTypes = {
-  onMealSelect: PropTypes.func.isRequired,
-  dishes: PropTypes.object.isRequired
+  onMealSelect: PropTypes.func.isRequired
+  //dishes: PropTypes.object.isRequired
   //history: PropTypes.object.isRequired
 };
 

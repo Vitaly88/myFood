@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import styled from "styled-components";
 import PopUpDatePicker from "./PopUpDatePicker";
 import GroupPicTitle from "./GroupPicTitle";
@@ -54,6 +54,7 @@ function Results({ dishes, onMealSelect }) {
     <StyledResults>
       {dishes.map(dish => (
         <GroupPicTitle
+          key={dish.name}
           dish={dish}
           name={dish.name}
           imageSrc={dish.imageSrc}
@@ -65,7 +66,7 @@ function Results({ dishes, onMealSelect }) {
 }
 
 Results.propTypes = {
-  dishes: PropTypes.array.isRequired
+  //dishes: PropTypes.array.isRequired
 };
 
 export default Results;
