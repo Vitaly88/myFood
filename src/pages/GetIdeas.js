@@ -96,13 +96,13 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
       <Search onFoodInput={handleDishChange} />
       <AddCarousel onFavSelect={onFavSelect} dishes={hits} />
       <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
-      <Suggestions dishes={breakfast} />
+      <Suggestions onFavSelect={onFavSelect} dishes={breakfast} />
       <StyledSubHeadlines>Lunch</StyledSubHeadlines>
-      <Suggestions dishes={lunch} />
+      <Suggestions onFavSelect={onFavSelect} dishes={lunch} />
       <StyledSubHeadlines>Dinner</StyledSubHeadlines>
-      <Suggestions dishes={dinner} />
+      <Suggestions onFavSelect={onFavSelect} dishes={dinner} />
       <StyledSubHeadlines>Desserts</StyledSubHeadlines>
-      <Suggestions dishes={dessert} />
+      <Suggestions onFavSelect={onFavSelect} dishes={dessert} />
     </>
   );
 }

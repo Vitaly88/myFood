@@ -31,9 +31,18 @@ const StyledText = styled.div`
   margin: 5px;
 `;
 
-function Suggestions({ dishes, history }) {
+function Suggestions({ dishes, history, onFavSelect }) {
   function handlePictureLink(dish) {
     history.push(`recipe/${dish.mealId}`);
+  }
+
+  function handleAddFavorite(dish) {
+    const newFav = {
+      mealId: dish.mealId,
+      title: dish.name,
+      image: dish.imageSrc
+    };
+    onFavSelect(newFav);
   }
 
   return (
@@ -46,12 +55,13 @@ function Suggestions({ dishes, history }) {
       arrows={false}
     >
       {dishes.map(dish => (
-        <CenteredContent
-          onClick={() => handlePictureLink(dish)}
-          key={dish.mealId}
-        >
-          <StyledImage alt={dish.name} src={dish.imageSrc} />
-          <LikeButton icon="fa-heart" />
+        <CenteredContent key={dish.mealId}>
+          <StyledImage
+            onClick={() => handlePictureLink(dish)}
+            alt={dish.name}
+            src={dish.imageSrc}
+          />
+          <LikeButton icon="fa-heart" onClick={() => handleAddFavorite(dish)} />
           <StyledText>{truncate(dish.name, 2)}</StyledText>
         </CenteredContent>
       ))}
