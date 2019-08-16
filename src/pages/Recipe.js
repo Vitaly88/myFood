@@ -11,6 +11,7 @@ const StyledImage = styled.img`
   box-shadow: 15px 15px 30px grey;
 `;
 const StyledContent = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,11 +26,16 @@ const StyledText = styled.div`
   text-justify: auto;
   text-align: justify;
 `;
+const StyledLike = styled(LikeButton)`
+  position: absolute;
+  /* margin-top: -50px;
+  z-index: 1; */
+`;
 
 const StyledHeadlines = styled.h2`
   font-family: Arial, Helvetica, sans-serif;
 `;
-function Recipe({ match }) {
+function Recipe({ match, meals, onFavSelect }) {
   const [meal, setMeal] = React.useState(null);
 
   React.useEffect(() => {
@@ -42,12 +48,20 @@ function Recipe({ match }) {
     return null;
   }
 
+  function handleFavChoice() {
+    const newFav = {
+      mealId: meal.mealId,
+      title: meal.name,
+      image: meal.imageSrc
+    };
+    onFavSelect(newFav);
+  }
   return (
     <>
       <Headline size="L">{truncate(meal.name, 2)}</Headline>
       <StyledContent key={meal.mealId}>
         <StyledImage alt={meal.name} src={meal.imageSrc} />
-        <LikeButton icon="fa-heart" />
+        <StyledLike icon="fa-heart" onClick={handleFavChoice} />
         <StyledHeadlines>Ingredients</StyledHeadlines>
         <table>
           <thead>

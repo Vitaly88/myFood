@@ -23,9 +23,9 @@ const CenteredContent = styled.div`
 `;
 
 const StyledLike = styled(LikeButton)`
-  position: relative;
-  margin-top: -100px;
+  position: absolute;
   left: 20px;
+  z-index: 1;
 `;
 
 const StyledText = styled.button`
@@ -41,9 +41,27 @@ const StyledText = styled.button`
   border: none;
 `;
 
-function AddCarousel({ dishes, history }) {
+function AddCarousel({ dishes, history, onFavSelect }) {
+  const [addFavorite, setAddFavorite] = React.useState(false);
+  const [fav, setFav] = React.useState(null);
+
   function handlePictureLink(dish) {
     history.push(`recipe/${dish.mealId}`);
+  }
+
+  function handleFav(favorite) {
+    setFav(favorite);
+  }
+
+  function handleAddFavorite() {
+    const newFav = {
+      title: fav.name,
+      image: fav.imageSrc,
+      ingredients: fav.ingredients,
+      measure: fav.measure
+    };
+    setAddFavorite(!addFavorite);
+    console.log(onFavSelect(newFav));
   }
 
   return (
@@ -59,15 +77,21 @@ function AddCarousel({ dishes, history }) {
       pauseOnHover={true}
     >
       {dishes.map(dish => (
-        <CenteredContent
-          onClick={() => handlePictureLink(dish)}
-          key={dish.mealId}
-        >
-          <StyledImage alt={dish.name} src={dish.imageSrc} />
-
-          <StyledText>{truncate(dish.name, 2)}</StyledText>
-          <StyledLike icon="fa-heart" />
-        </CenteredContent>
+        <>
+          <CenteredContent key={dish.mealId}>
+            <StyledImage
+              onClick={() => handlePictureLink(dish)}
+              alt={dish.name}
+              src={dish.imageSrc}
+            />
+            <StyledLike
+              icon="fa-heart"
+              onFavSelect={() => handleFav()}
+              onClick={handleAddFavorite}
+            />
+            <StyledText>{truncate(dish.name, 2)}</StyledText>
+          </CenteredContent>
+        </>
       ))}
     </Slider>
   );
