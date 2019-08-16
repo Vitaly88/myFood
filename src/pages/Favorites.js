@@ -3,6 +3,7 @@ import React from "react";
 //import PropTypes from "prop-types";
 import Headline from "../components/Headline";
 import GroupPicTitle from "../components/GroupPicTitle";
+//import { withRouter } from "react-router-dom";
 
 function Favorites({ favorites, dish }) {
   return (
@@ -13,8 +14,8 @@ function Favorites({ favorites, dish }) {
           .map(favorite => (
             <>
               <GroupPicTitle
-                key={favorite.mealId}
-                dish={dish}
+                mealId={favorite.mealId}
+                dish={favorite}
                 name={favorite.title}
                 imageSrc={favorite.image}
                 // onDeleteDish={() => setDeleteItem()}

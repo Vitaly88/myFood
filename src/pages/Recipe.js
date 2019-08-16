@@ -35,7 +35,7 @@ const StyledLike = styled(LikeButton)`
 const StyledHeadlines = styled.h2`
   font-family: Arial, Helvetica, sans-serif;
 `;
-function Recipe({ match, meals, onFavSelect }) {
+function Recipe({ match, onFavSelect }) {
   const [meal, setMeal] = React.useState(null);
 
   React.useEffect(() => {

@@ -38,7 +38,7 @@ const StyledContainer = styled.div`
   position: relative;
 `;
 
-function GetIdeas({ onMealSelect, history }) {
+function GetIdeas({ onMealSelect, history, onFavSelect }) {
   const [dishes, setDishes] = React.useState(null);
   const [hits, setHits] = React.useState([]);
   const [breakfast, setBreakfast] = React.useState([]);
@@ -94,7 +94,7 @@ function GetIdeas({ onMealSelect, history }) {
   return (
     <>
       <Search onFoodInput={handleDishChange} />
-      <AddCarousel dishes={hits} />
+      <AddCarousel onFavSelect={onFavSelect} dishes={hits} />
       <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
       <Suggestions dishes={breakfast} />
       <StyledSubHeadlines>Lunch</StyledSubHeadlines>

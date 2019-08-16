@@ -27,6 +27,7 @@ function Results({ dishes, onMealSelect }) {
 
   function handleTimeSelect(result) {
     const newMeal = {
+      mealId: selectedDish.mealId,
       mealType: result.mealType,
       date: result.day.toLocaleDateString("en-US", options),
       title: selectedDish.name,

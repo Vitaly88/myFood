@@ -40,7 +40,7 @@ function MealPlanner({ meals, mealId }) {
                 <StyledText>{dish.mealType.toUpperCase()}</StyledText>
               </Headlines>
               <GroupPicTitle
-                key={mealId}
+                mealId={mealId}
                 dish={dish}
                 name={dish.title}
                 imageSrc={dish.image}

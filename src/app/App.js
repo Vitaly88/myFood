@@ -60,7 +60,11 @@ function App() {
                 path="/"
                 exact
                 render={() => (
-                  <GetIdeas onMealSelect={handleMealSelect} meals={meals} />
+                  <GetIdeas
+                    onFavSelect={handleFavoriteSelect}
+                    onMealSelect={handleMealSelect}
+                    meals={meals}
+                  />
                 )}
               />
               <Route

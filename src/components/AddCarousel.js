@@ -42,26 +42,17 @@ const StyledText = styled.button`
 `;
 
 function AddCarousel({ dishes, history, onFavSelect }) {
-  const [addFavorite, setAddFavorite] = React.useState(false);
-  const [fav, setFav] = React.useState(null);
-
   function handlePictureLink(dish) {
     history.push(`recipe/${dish.mealId}`);
   }
 
-  function handleFav(favorite) {
-    setFav(favorite);
-  }
-
-  function handleAddFavorite() {
+  function handleAddFavorite(dish) {
     const newFav = {
-      title: fav.name,
-      image: fav.imageSrc,
-      ingredients: fav.ingredients,
-      measure: fav.measure
+      mealId: dish.mealId,
+      title: dish.name,
+      image: dish.imageSrc
     };
-    setAddFavorite(!addFavorite);
-    console.log(onFavSelect(newFav));
+    onFavSelect(newFav);
   }
 
   return (
@@ -86,8 +77,7 @@ function AddCarousel({ dishes, history, onFavSelect }) {
             />
             <StyledLike
               icon="fa-heart"
-              onFavSelect={() => handleFav()}
-              onClick={handleAddFavorite}
+              onClick={() => handleAddFavorite(dish)}
             />
             <StyledText>{truncate(dish.name, 2)}</StyledText>
           </CenteredContent>
