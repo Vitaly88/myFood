@@ -73,13 +73,13 @@ function Recipe({ match, onFavSelect }) {
           <tbody>
             <tr>
               <td>
-                {meal.ingredients.map(elem => (
-                  <div key={meal.strIngredients}>{elem}</div>
+                {meal.ingredients.map((elem, index) => (
+                  <div key={elem + index}>{elem}</div>
                 ))}
               </td>
               <td>
-                {meal.measure.map(elem => (
-                  <div key={meal.name}>{elem}</div>
+                {meal.measure.map((elem, index) => (
+                  <div key={elem + index}>{elem}</div>
                 ))}
               </td>
             </tr>

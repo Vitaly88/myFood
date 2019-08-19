@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cypress": "^3.4.1",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "prop-types": "^15.7.2",
@@ -21,7 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docz:build": "docz build",
+    "cypress:open": "npx cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"

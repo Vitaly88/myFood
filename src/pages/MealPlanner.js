@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
 import GroupPicTitle from "../components/GroupPicTitle";
+import { getMealsFromStorage, setMealsToStorage } from "../utils/storage";
 
 const GroupedInfo = styled.div`
-  /* position: relative; */
   margin: 10px;
   color: #5938e0;
 `;
@@ -20,33 +20,35 @@ const StyledDate = styled.div`
   font-size: 20px;
   font-weight: bold;
 `;
-function MealPlanner({ meals, mealId }) {
-  //const [deleteItem, setDeleteItem] = React.useState([]);
+function MealPlanner({ meals }) {
+  const [mealsList, setMealsList] = React.useState(getMealsFromStorage());
 
-  // function handleDeleteDish() {
-  //   setDeleteItem();
-  // }
+  const handleMealsList = id => {
+    const filteredItems = mealsList.filter(dish => dish.mealId !== id);
+    setMealsToStorage(filteredItems);
+    const newMeals = [...mealsList];
+    setMealsList(newMeals);
+  };
 
   return (
     <>
       <Headline size="L">Meal Planner</Headline>
       <GroupedInfo>
         {meals
-          .map(dish => (
-            <>
+          .map((dish, index) => (
+            <div key={dish.mealId}>
               <Headlines>
                 <StyledDate>{dish.date}</StyledDate>
                 <br />
                 <StyledText>{dish.mealType.toUpperCase()}</StyledText>
               </Headlines>
               <GroupPicTitle
-                mealId={mealId}
                 dish={dish}
                 name={dish.title}
                 imageSrc={dish.image}
-                // onDeleteDish={() => setDeleteItem()}
+                onDeleteDish={() => handleMealsList(dish.mealId)}
               />
-            </>
+            </div>
           ))
           .slice(0, 21)}
       </GroupedInfo>

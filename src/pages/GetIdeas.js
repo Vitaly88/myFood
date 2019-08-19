@@ -108,9 +108,9 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
 }
 
 GetIdeas.propTypes = {
-  onMealSelect: PropTypes.func.isRequired
-  //dishes: PropTypes.object.isRequired
-  //history: PropTypes.object.isRequired
+  onMealSelect: PropTypes.func.isRequired,
+  onFavSelect: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default withRouter(GetIdeas);

@@ -11,6 +11,10 @@ export function setMealsToStorage(meals) {
   localStorage.setItem("meals", JSON.stringify(meals));
 }
 
+export function removeItemFromLocalStorage(meals) {
+  localStorage.removeItem(meals);
+}
+
 export function getFavoritesFromStorage() {
   try {
     const data = JSON.parse(localStorage.getItem("favorites"));

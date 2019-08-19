@@ -39,8 +39,6 @@ function Search({ onFoodInput }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    //console.log("handleSubmit", searchValue);
-
     searchFood(searchValue).then(dishes => {
       onFoodInput(dishes);
     });
@@ -49,7 +47,6 @@ function Search({ onFoodInput }) {
   function handleChange(event) {
     const lowerCaseValue = event.target.value.toLowerCase();
     setSearchValue(lowerCaseValue);
-    //console.log("handleChange", lowerCaseValue);
   }
 
   return (

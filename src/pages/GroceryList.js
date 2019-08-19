@@ -38,13 +38,13 @@ function GroceryList({ meals, mealId }) {
           <tbody>
             <tr>
               <td>
-                {ingredients.map(elem => (
-                  <StyledBack key={mealId}>{elem}</StyledBack>
+                {ingredients.map((elem, index) => (
+                  <StyledBack key={elem + index}>{elem}</StyledBack>
                 ))}
               </td>
               <StyledContent>
-                {measure.map(elem => (
-                  <StyledBack key={mealId}>{elem}</StyledBack>
+                {measure.map((elem, index) => (
+                  <StyledBack key={elem + index}>{elem}</StyledBack>
                 ))}
               </StyledContent>
             </tr>

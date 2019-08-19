@@ -57,8 +57,8 @@ function GroupPicTitle({
     history.push(`recipe/${dish.mealId}`);
   }
   return (
-    <div>
-      <BoxItems key={mealId}>
+    <div key={mealId}>
+      <BoxItems>
         <IconImage
           alt={name}
           src={imageSrc}

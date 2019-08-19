@@ -22,11 +22,7 @@ const CenteredContent = styled.div`
   position: relative;
 `;
 
-const StyledLike = styled(LikeButton)`
-  position: absolute;
-  left: 20px;
-  z-index: 1;
-`;
+const StyledLike = styled(LikeButton)``;
 
 const StyledText = styled.button`
   color: white;
@@ -34,7 +30,7 @@ const StyledText = styled.button`
   font-size: 15px;
   position: absolute;
   margin-top: -40px;
-  margin-left: 20px;
+  margin-left: 55px;
   border-radius: 7px;
   background-color: #5938e0;
   height: 25px;
@@ -42,6 +38,7 @@ const StyledText = styled.button`
 `;
 
 function AddCarousel({ dishes, history, onFavSelect }) {
+  //const [showBookmarked, setShowBookmarked] = React.useState(false);
   function handlePictureLink(dish) {
     history.push(`recipe/${dish.mealId}`);
   }
@@ -68,20 +65,22 @@ function AddCarousel({ dishes, history, onFavSelect }) {
       pauseOnHover={true}
     >
       {dishes.map(dish => (
-        <>
-          <CenteredContent key={dish.mealId}>
+        <div key={dish.mealId}>
+          <CenteredContent>
             <StyledImage
               onClick={() => handlePictureLink(dish)}
               alt={dish.name}
               src={dish.imageSrc}
             />
+            <StyledText>{truncate(dish.name, 2)}</StyledText>
             <StyledLike
               icon="fa-heart"
               onClick={() => handleAddFavorite(dish)}
+              // active={bookmarked}
+              // onClick={onBookmark}
             />
-            <StyledText>{truncate(dish.name, 2)}</StyledText>
           </CenteredContent>
-        </>
+        </div>
       ))}
     </Slider>
   );
