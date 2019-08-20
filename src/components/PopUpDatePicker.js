@@ -111,6 +111,5 @@ function PopUpDatePicker({ onTimeSelect }) {
 
 PopUpDatePicker.propTypes = {
   onTimeSelect: PropTypes.func.isRequired
-  // selectedDish: PropTypes.array.isRequired
 };
 export default PopUpDatePicker;

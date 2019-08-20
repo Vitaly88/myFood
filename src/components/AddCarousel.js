@@ -10,7 +10,7 @@ import LikeButton from "../components/LikeButton";
 //import Results from "../components/Results";
 
 const StyledImage = styled.img`
-  margin-top: 140px;
+  margin-top: 150px;
   border-radius: 20px;
   width: 220px;
   box-shadow: 15px 5px 15px grey;
@@ -87,6 +87,8 @@ function AddCarousel({ dishes, history, onFavSelect }) {
 }
 
 AddCarousel.propTypes = {
-  dishes: PropTypes.array.isRequired
+  dishes: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
+  onFavSelect: PropTypes.func.isRequired
 };
 export default withRouter(AddCarousel);

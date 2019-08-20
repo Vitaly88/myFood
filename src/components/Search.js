@@ -14,7 +14,7 @@ const RecipeInput = styled.input`
 `;
 
 const Form = styled.form`
-  margin-top: -130px;
+  margin-top: -135px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -63,7 +63,7 @@ function Search({ onFoodInput }) {
 
   return (
     <>
-      {!loading && !searchValue && <div>No such </div>}
+      {!loading && !searchValue && <div>Sorry, I didn't find anything</div>}
       <Form onSubmit={handleSubmit}>
         <InputContainer>
           <SearchIcon src="images/noun_Search_743838.png" />

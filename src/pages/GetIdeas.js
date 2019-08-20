@@ -39,6 +39,11 @@ const StyledContainer = styled.div`
   position: relative;
 `;
 
+const StyledLoader = styled(Loader)`
+  height: 100vh;
+  top: 50%;
+`;
+
 function GetIdeas({ onMealSelect, history, onFavSelect }) {
   const [dishes, setDishes] = React.useState(null);
   const [hits, setHits] = React.useState([]);
@@ -124,29 +129,24 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
   return (
     <>
       {!loading &&
-        !hits &&
-        !dishes &&
-        !breakfast &&
-        !lunch &&
-        !dinner &&
-        !dessert && (
-          <div>
-            There's no internet connection. Please try to find connection
-          </div>
+        (!hits && !dishes && !breakfast && !lunch && !dinner && !dessert) && (
+          <>Sorry, something has gone wrong!</>
         )}
-      {!loading && !dishes && <Search onFoodInput={handleDishChange} />}
-
-      {!loading && <Loader /> && (
-        <AddCarousel onFavSelect={onFavSelect} dishes={hits} />
+      {!loading && (hits || dishes || breakfast || lunch || dinner || dessert) && (
+        <>
+          <Search onFoodInput={handleDishChange} />
+          <AddCarousel onFavSelect={onFavSelect} dishes={hits} />
+          <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
+          <Suggestions onFavSelect={onFavSelect} dishes={breakfast} />
+          <StyledSubHeadlines>Lunch</StyledSubHeadlines>
+          <Suggestions onFavSelect={onFavSelect} dishes={lunch} />
+          <StyledSubHeadlines>Dinner</StyledSubHeadlines>
+          <Suggestions onFavSelect={onFavSelect} dishes={dinner} />
+          <StyledSubHeadlines>Desserts</StyledSubHeadlines>
+          <Suggestions onFavSelect={onFavSelect} dishes={dessert} />
+        </>
       )}
-      {/* <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
-      <Suggestions onFavSelect={onFavSelect} dishes={breakfast} />
-      <StyledSubHeadlines>Lunch</StyledSubHeadlines>
-      <Suggestions onFavSelect={onFavSelect} dishes={lunch} />
-      <StyledSubHeadlines>Dinner</StyledSubHeadlines>
-      <Suggestions onFavSelect={onFavSelect} dishes={dinner} />
-      <StyledSubHeadlines>Desserts</StyledSubHeadlines>
-      <Suggestions onFavSelect={onFavSelect} dishes={dessert} /> */}
+      {loading && <StyledLoader />}
     </>
   );
 }

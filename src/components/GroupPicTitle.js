@@ -80,7 +80,12 @@ function GroupPicTitle({
 
 GroupPicTitle.propTypes = {
   name: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired
-  //onSelectDish: PropTypes.func.isRequired
+  imageSrc: PropTypes.string.isRequired,
+  onSelectDish: PropTypes.func.isRequired,
+  onDeleteDish: PropTypes.func.isRequired,
+  mealId: PropTypes.string.isRequired,
+  ingredients: PropTypes.array.isRequired,
+  dish: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired
 };
 export default withRouter(GroupPicTitle);
