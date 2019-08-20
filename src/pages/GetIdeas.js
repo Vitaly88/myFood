@@ -39,11 +39,6 @@ const StyledContainer = styled.div`
   position: relative;
 `;
 
-const StyledLoader = styled(Loader)`
-  height: 100vh;
-  top: 50%;
-`;
-
 function GetIdeas({ onMealSelect, history, onFavSelect }) {
   const [dishes, setDishes] = React.useState(null);
   const [hits, setHits] = React.useState([]);
@@ -130,7 +125,7 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
     <>
       {!loading &&
         (!hits && !dishes && !breakfast && !lunch && !dinner && !dessert) && (
-          <>Sorry, something has gone wrong!</>
+          <div>Sorry, something has gone wrong!</div>
         )}
       {!loading && (hits || dishes || breakfast || lunch || dinner || dessert) && (
         <>
@@ -146,7 +141,7 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
           <Suggestions onFavSelect={onFavSelect} dishes={dessert} />
         </>
       )}
-      {loading && <StyledLoader />}
+      {loading && <Loader />}
     </>
   );
 }

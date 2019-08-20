@@ -16,6 +16,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Favorites from "../pages/Favorites";
 import Settings from "../pages/Settings";
+import NotFound from "../pages/NotFound";
 
 const Grid = styled.div`
   display: grid;
@@ -107,6 +108,7 @@ function App() {
                 )}
               />
               <Route path="/settings" component={Settings} />
+              <Route component={NotFound} />
             </Switch>
           </Content>
           <Footer />

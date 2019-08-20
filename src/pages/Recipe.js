@@ -4,6 +4,7 @@ import Headline from "../components/Headline";
 import { getMeal } from "../utils/mealApi";
 import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
+import Loader from "../components/Loader";
 
 const StyledImage = styled.img`
   width: 220px;
@@ -36,11 +37,18 @@ const StyledHeadlines = styled.h2`
 
 function Recipe({ match, onFavSelect }) {
   const [meal, setMeal] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    getMeal(match.params.id).then(result => {
-      setMeal(result);
-    });
+    getMeal(match.params.id)
+      .then(result => {
+        setMeal(result);
+      })
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, [match.params.id]);
 
   if (!meal) {
@@ -57,36 +65,42 @@ function Recipe({ match, onFavSelect }) {
   }
   return (
     <>
-      <Headline size="L">{truncate(meal.name, 2)}</Headline>
-      <StyledContent key={meal.mealId}>
-        <StyledImage alt={meal.name} src={meal.imageSrc} />
-        <StyledLike icon="fa-heart" onClick={handleFavChoice} />
-        <StyledHeadlines>Ingredients</StyledHeadlines>
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                {meal.ingredients.map((elem, index) => (
-                  <div key={elem + index}>{elem}</div>
-                ))}
-              </td>
-              <td>
-                {meal.measure.map((elem, index) => (
-                  <div key={elem + index}>{elem}</div>
-                ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <StyledHeadlines>Preparation</StyledHeadlines>
-        <StyledText>{meal.recipe}</StyledText>
-      </StyledContent>
+      {!loading && !meal && <div>Sorry, something has gone wrong!</div>}
+      {!loading && meal && (
+        <>
+          <Headline size="L">{truncate(meal.name, 2)}</Headline>
+          <StyledContent key={meal.mealId}>
+            <StyledImage alt={meal.name} src={meal.imageSrc} />
+            <StyledLike icon="fa-heart" onClick={handleFavChoice} />
+            <StyledHeadlines>Ingredients</StyledHeadlines>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {meal.ingredients.map((elem, index) => (
+                      <div key={elem + index}>{elem}</div>
+                    ))}
+                  </td>
+                  <td>
+                    {meal.measure.map((elem, index) => (
+                      <div key={elem + index}>{elem}</div>
+                    ))}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <StyledHeadlines>Preparation</StyledHeadlines>
+            <StyledText>{meal.recipe}</StyledText>
+          </StyledContent>
+        </>
+      )}
+      {loading && <Loader />}
     </>
   );
 }

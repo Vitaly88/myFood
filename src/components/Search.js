@@ -63,7 +63,9 @@ function Search({ onFoodInput }) {
 
   return (
     <>
-      {!loading && !searchValue && <div>Sorry, I didn't find anything</div>}
+      {!loading && !searchValue && (
+        <RecipeInput onChange={handleChange} value={"Nothing"} /> //Add correct info! Maybe modal?
+      )}
       <Form onSubmit={handleSubmit}>
         <InputContainer>
           <SearchIcon src="images/noun_Search_743838.png" />
