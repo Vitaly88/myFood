@@ -1,5 +1,5 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import PopUpDatePicker from "./PopUpDatePicker";
 import GroupPicTitle from "./GroupPicTitle";
@@ -9,9 +9,6 @@ const StyledResults = styled.div`
 `;
 
 function Results({ dishes, onMealSelect }) {
-  // if (dishes.length === 0) {
-  //   return <div>Sorry, I can't find anything.</div>;
-  // }
   const [selectedDish, setSelectedDish] = React.useState(null);
 
   function handleSelectDish(dish) {
@@ -67,7 +64,8 @@ function Results({ dishes, onMealSelect }) {
 }
 
 Results.propTypes = {
-  //dishes: PropTypes.array.isRequired
+  dishes: PropTypes.array.isRequired,
+  onMealSelect: PropTypes.func.isRequired
 };
 
 export default Results;

@@ -36,12 +36,24 @@ const InputContainer = styled.div`
 
 function Search({ onFoodInput }) {
   const [searchValue, setSearchValue] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
 
+  const clearState = () => {
+    setSearchValue("");
+  };
   function handleSubmit(event) {
     event.preventDefault();
-    searchFood(searchValue).then(dishes => {
-      onFoodInput(dishes);
-    });
+
+    searchFood(searchValue)
+      .then(dishes => {
+        onFoodInput(dishes);
+      })
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      })
+      .then(clearState());
   }
 
   function handleChange(event) {
@@ -50,16 +62,19 @@ function Search({ onFoodInput }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputContainer>
-        <SearchIcon src="images/noun_Search_743838.png" />
-        <RecipeInput
-          onChange={handleChange}
-          value={searchValue}
-          placeholder="Any ideas for your meal?"
-        />
-      </InputContainer>
-    </Form>
+    <>
+      {!loading && !searchValue && <div>No such </div>}
+      <Form onSubmit={handleSubmit}>
+        <InputContainer>
+          <SearchIcon src="images/noun_Search_743838.png" />
+          <RecipeInput
+            onChange={handleChange}
+            value={searchValue}
+            placeholder="Any ideas for your meal?"
+          />
+        </InputContainer>
+      </Form>
+    </>
   );
 }
 

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Suggestions from "../components/Suggestions";
 import { appearFromRight } from "../utils/animations";
 import { withRouter } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const StyledSubHeadlines = styled.h2`
   color: #5938e0;
@@ -45,6 +46,7 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
   const [lunch, setLunch] = React.useState([]);
   const [dinner, setDinner] = React.useState([]);
   const [dessert, setDessert] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   function handleMealSelect(meal) {
     onMealSelect(meal);
@@ -52,25 +54,53 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
   }
 
   React.useEffect(() => {
-    searchFood("salad").then(result => setHits(result.slice(0, 10)));
+    searchFood("salad")
+      .then(result => setHits(result.slice(0, 10)))
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, []);
 
   React.useEffect(() => {
-    getCategory("breakfast").then(result => setBreakfast(result.slice(0, 6)));
+    getCategory("breakfast")
+      .then(result => setBreakfast(result.slice(0, 6)))
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, []);
 
   React.useEffect(() => {
-    getCategory("vegetarian").then(result => setLunch(result.slice(0, 10)));
+    getCategory("vegetarian")
+      .then(result => setLunch(result.slice(0, 10)))
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, []);
 
   React.useEffect(() => {
-    getCategory("chicken", "lamb").then(result =>
-      setDinner(result.slice(0, 10))
-    );
+    getCategory("chicken", "lamb")
+      .then(result => setDinner(result.slice(0, 10)))
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, []);
 
   React.useEffect(() => {
-    getCategory("dessert").then(result => setDessert(result.slice(0, 10)));
+    getCategory("dessert")
+      .then(result => setDessert(result.slice(0, 10)))
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   }, []);
 
   function handleDishChange(dishes) {
@@ -93,16 +123,30 @@ function GetIdeas({ onMealSelect, history, onFavSelect }) {
 
   return (
     <>
-      <Search onFoodInput={handleDishChange} />
-      <AddCarousel onFavSelect={onFavSelect} dishes={hits} />
-      <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
+      {!loading &&
+        !hits &&
+        !dishes &&
+        !breakfast &&
+        !lunch &&
+        !dinner &&
+        !dessert && (
+          <div>
+            There's no internet connection. Please try to find connection
+          </div>
+        )}
+      {!loading && !dishes && <Search onFoodInput={handleDishChange} />}
+
+      {!loading && <Loader /> && (
+        <AddCarousel onFavSelect={onFavSelect} dishes={hits} />
+      )}
+      {/* <StyledSubHeadlines>Ideas for Breakfast</StyledSubHeadlines>
       <Suggestions onFavSelect={onFavSelect} dishes={breakfast} />
       <StyledSubHeadlines>Lunch</StyledSubHeadlines>
       <Suggestions onFavSelect={onFavSelect} dishes={lunch} />
       <StyledSubHeadlines>Dinner</StyledSubHeadlines>
       <Suggestions onFavSelect={onFavSelect} dishes={dinner} />
       <StyledSubHeadlines>Desserts</StyledSubHeadlines>
-      <Suggestions onFavSelect={onFavSelect} dishes={dessert} />
+      <Suggestions onFavSelect={onFavSelect} dishes={dessert} /> */}
     </>
   );
 }

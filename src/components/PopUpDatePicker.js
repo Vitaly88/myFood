@@ -57,7 +57,6 @@ function PopUpDatePicker({ onTimeSelect }) {
   };
 
   function handleDayClick(day, { selected }) {
-    console.log(day, selected);
     setSelectedDay(day);
   }
 

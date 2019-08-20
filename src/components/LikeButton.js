@@ -7,7 +7,6 @@ const StyledButton = styled.button`
   color: #5938e0;
   font-size: 30px;
   left: 5px;
-
   margin-top: -45px;
 `;
 

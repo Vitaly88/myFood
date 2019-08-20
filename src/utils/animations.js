@@ -22,3 +22,9 @@ to {
     opacity: 1;
     transform: translate(0, 0);
 }`;
+
+export const loader = keyframes`
+ 
+from { transform: rotate(0deg) }
+
+to { transform: rotate(360deg) }`;

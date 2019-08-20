@@ -9,7 +9,6 @@ const ContainerHeader = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  /* z-index: 1; */
 `;
 
 function Header({ props }) {

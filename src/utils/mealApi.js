@@ -1,9 +1,17 @@
 const dummy = new Array(20).fill("");
+
 export function searchFood(searchValue) {
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
   )
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .catch(console.error)
     .then(result => {
       const dishes = result.meals.map(dish => {
         return {
@@ -20,6 +28,7 @@ export function searchFood(searchValue) {
             .filter(Boolean)
         };
       });
+
       return dishes;
     });
 }

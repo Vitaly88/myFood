@@ -28,13 +28,12 @@ const StyledText = styled.div`
 `;
 const StyledLike = styled(LikeButton)`
   position: absolute;
-  /* margin-top: -50px;
-  z-index: 1; */
 `;
 
 const StyledHeadlines = styled.h2`
   font-family: Arial, Helvetica, sans-serif;
 `;
+
 function Recipe({ match, onFavSelect }) {
   const [meal, setMeal] = React.useState(null);
 

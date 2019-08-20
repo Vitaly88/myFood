@@ -32,6 +32,11 @@ function App() {
   const [meals, setMeals] = React.useState(getMealsFromStorage());
   const [favorites, setFavorites] = React.useState(getFavoritesFromStorage());
 
+  const handleMealDelete = id => {
+    const filteredItems = meals.filter(item => item.mealId !== id);
+    setMeals(filteredItems);
+  };
+
   React.useEffect(() => {
     setMealsToStorage(meals);
   }, [meals]);
@@ -69,7 +74,13 @@ function App() {
               />
               <Route
                 path="/planner"
-                render={props => <MealPlanner meals={meals} {...props} />}
+                render={props => (
+                  <MealPlanner
+                    meals={meals}
+                    onMealDelete={handleMealDelete}
+                    {...props}
+                  />
+                )}
               />
               <Route
                 path="/grocery"
