@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Redirect } from "react-router-dom";
-import Recipe from "../pages/Recipe";
-import Results from "../components/Results";
+import { withRouter } from "react-router-dom";
+import { truncate } from "../utils/truncate";
+import LikeButton from "../components/LikeButton";
 
 const StyledImage = styled.img`
-  margin-top: 140px;
+  margin-top: 150px;
   border-radius: 20px;
   width: 220px;
   box-shadow: 15px 5px 15px grey;
@@ -21,42 +21,41 @@ const CenteredContent = styled.div`
   position: relative;
 `;
 
-const StyledText = styled.div`
-  color: #5938e0;
+const StyledLike = styled(LikeButton)``;
+
+const StyledText = styled.button`
+  color: white;
   font-family: "Arial", "Helvetica", sans-serif;
-  font-weight: bold;
-  font-size: 25px;
+  font-size: 15px;
   position: absolute;
   margin-top: -40px;
-  margin-left: 100px;
+  margin-left: 55px;
+  border-radius: 7px;
+  background-color: #5938e0;
+  height: 25px;
+  border: none;
 `;
 
-function AddCarousel({ dishes, name }) {
-  const [openRecipe, setOpenRecipe] = React.useState(null);
-
-  // if (openRecipe) {
-  //   console.log(dishes.find(elem => elem.name));
-  //   return dishes.find(elem => (
-  //     <>
-  //       <div>{elem.name === name}</div>
-  //       {/* <img alt={elem.name} src={elem.imageSrc} /> */}
-  //     </>
-  //   ));
-  // }
-
-  function handleClick(meals) {
-    // const recipe = {
-    //   mealId: dishes.mealId,
-    //   title: dishes.title,
-    //   image: dishes.imageSrc
-    // };
-    //console.log(meals);
-    setOpenRecipe(dishes);
+function AddCarousel({ dishes, history, onFavSelect }) {
+  //const [showBookmarked, setShowBookmarked] = React.useState(false);
+  function handlePictureLink(dish) {
+    history.push(`recipe/${dish.mealId}`);
   }
+
+  function handleAddFavorite(dish) {
+    const newFav = {
+      _id: dish._id,
+      mealId: dish.mealId,
+      title: dish.name,
+      image: dish.imageSrc
+    };
+
+    onFavSelect(newFav);
+  }
+
   return (
     <Slider
       slidesToShow={1}
-      className="center"
       centerMode={true}
       infinite={true}
       centerPadding={"60px"}
@@ -67,9 +66,19 @@ function AddCarousel({ dishes, name }) {
       pauseOnHover={true}
     >
       {dishes.map(dish => (
-        <CenteredContent onClick={handleClick} key={dish.mealId}>
-          <StyledImage alt={dish.name} src={dish.imageSrc} />
-          <StyledText>{dish.name}</StyledText>
+        <CenteredContent key={dish._id}>
+          <StyledImage
+            onClick={() => handlePictureLink(dish)}
+            alt={dish.name}
+            src={dish.imageSrc}
+          />
+          <StyledText>{truncate(dish.name, 2)}</StyledText>
+          <StyledLike
+            icon="fa-heart"
+            onClick={() => handleAddFavorite(dish)}
+            // active={bookmarked}
+            // onClick={onBookmark}
+          />
         </CenteredContent>
       ))}
     </Slider>
@@ -77,6 +86,8 @@ function AddCarousel({ dishes, name }) {
 }
 
 AddCarousel.propTypes = {
-  dishes: PropTypes.array.isRequired
+  dishes: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
+  onFavSelect: PropTypes.func.isRequired
 };
-export default AddCarousel;
+export default withRouter(AddCarousel);

@@ -57,7 +57,6 @@ function PopUpDatePicker({ onTimeSelect }) {
   };
 
   function handleDayClick(day, { selected }) {
-    console.log(day, selected);
     setSelectedDay(day);
   }
 
@@ -112,6 +111,5 @@ function PopUpDatePicker({ onTimeSelect }) {
 
 PopUpDatePicker.propTypes = {
   onTimeSelect: PropTypes.func.isRequired
-  // selectedDish: PropTypes.array.isRequired
 };
 export default PopUpDatePicker;

@@ -3,7 +3,12 @@ import GlobalStyle from "./GlobalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MealPlanner from "../pages/MealPlanner";
 import GetIdeas from "../pages/GetIdeas";
-import { getMealsFromStorage, setMealsToStorage } from "../utils/storage";
+import {
+  getMealsFromStorage,
+  setMealsToStorage,
+  setFavoritesToStorage,
+  getFavoritesFromStorage
+} from "../utils/storage";
 import GroceryList from "../pages/GroceryList";
 import Recipe from "../pages/Recipe";
 import styled from "styled-components";
@@ -11,6 +16,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Favorites from "../pages/Favorites";
 import Settings from "../pages/Settings";
+import NotFound from "../pages/NotFound";
 
 const Grid = styled.div`
   display: grid;
@@ -25,6 +31,17 @@ const Content = styled.div`
 
 function App() {
   const [meals, setMeals] = React.useState(getMealsFromStorage());
+  const [favorites, setFavorites] = React.useState(getFavoritesFromStorage());
+
+  const handleMealDelete = id => {
+    const filteredItems = meals.filter(item => item._id !== id);
+    setMeals(filteredItems);
+  };
+
+  const handleFavDelete = id => {
+    const filteredItems = favorites.filter(item => item._id !== id);
+    setFavorites(filteredItems);
+  };
 
   React.useEffect(() => {
     setMealsToStorage(meals);
@@ -32,6 +49,22 @@ function App() {
 
   function handleMealSelect(meal) {
     setMeals([...meals, meal]);
+  }
+
+  React.useEffect(() => {
+    setFavoritesToStorage(favorites);
+  }, [favorites]);
+
+  //console.log(favorites);
+
+  function handleFavoriteSelect(favorite) {
+    const index = favorites.findIndex(item => item._id === favorite._id);
+
+    if (index === -1) {
+      setFavorites([...favorites, favorite]);
+    } else {
+      return favorites;
+    }
   }
 
   return (
@@ -45,24 +78,51 @@ function App() {
               <Route
                 path="/"
                 exact
-                render={props => (
-                  <GetIdeas onMealSelect={handleMealSelect} {...props} />
+                render={() => (
+                  <GetIdeas
+                    onFavSelect={handleFavoriteSelect}
+                    onMealSelect={handleMealSelect}
+                    meals={meals}
+                  />
                 )}
               />
               <Route
                 path="/planner"
-                render={props => <MealPlanner meals={meals} {...props} />}
+                render={props => (
+                  <MealPlanner
+                    meals={meals}
+                    onMealDelete={handleMealDelete}
+                    {...props}
+                  />
+                )}
               />
               <Route
                 path="/grocery"
                 render={props => <GroceryList meals={meals} {...props} />}
               />
               <Route
-                path="/recipe"
-                render={props => <Recipe meals={meals} {...props} />}
+                path="/recipe/:id"
+                render={props => (
+                  <Recipe
+                    onFavSelect={handleFavoriteSelect}
+                    meals={meals}
+                    {...props}
+                  />
+                )}
               />
-              <Route path="/favorites" component={Favorites} />
+              <Route
+                path="/favorites"
+                render={props => (
+                  <Favorites
+                    favorites={favorites}
+                    onMealDelete={handleFavDelete}
+                    component={Favorites}
+                    {...props}
+                  />
+                )}
+              />
               <Route path="/settings" component={Settings} />
+              <Route component={NotFound} />
             </Switch>
           </Content>
           <Footer />

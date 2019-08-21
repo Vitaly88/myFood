@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import AddButton from "../components/AddButton";
 import DeleteButton from "../components/DeleteButton";
+import { withRouter } from "react-router-dom";
 
 const IconImage = styled.img`
   width: 110px;
@@ -47,22 +48,28 @@ function GroupPicTitle({
   imageSrc,
   onSelectDish,
   onDeleteDish,
-  mealId,
-  onOpenRecipe,
-  ingredients
+  _id,
+  dish,
+  history
 }) {
+  function handlePictureLink() {
+    history.push(`recipe/${dish.mealId}`);
+  }
+  console.log();
   return (
-    <div>
-      <BoxItems key={mealId} onClick={() => onOpenRecipe()}>
-        <IconImage alt={name} src={imageSrc} />
+    <div key={_id}>
+      <BoxItems>
+        <IconImage
+          alt={name}
+          src={imageSrc}
+          onClick={() => handlePictureLink(dish)}
+        />
         <TextDescription>
           {name}
-          {ingredients}
           {/* {dishes.map(dish => (
               <DietTag>{dish.diet}</DietTag>
             ))} */}
         </TextDescription>
-
         {onSelectDish && <AddButton onClick={() => onSelectDish()} />}
         {onDeleteDish && <DeleteButton onClick={() => onDeleteDish()} />}
       </BoxItems>
@@ -72,7 +79,10 @@ function GroupPicTitle({
 
 GroupPicTitle.propTypes = {
   name: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired
-  //onSelectDish: PropTypes.func.isRequired
+  imageSrc: PropTypes.string.isRequired,
+  onSelectDish: PropTypes.func.isRequired,
+  onDeleteDish: PropTypes.func.isRequired,
+  dish: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
-export default GroupPicTitle;
+export default withRouter(GroupPicTitle);

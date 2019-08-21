@@ -11,10 +11,11 @@ const RecipeInput = styled.input`
   font-family: "Arial", "Helvetica", sans-serif;
   padding-left: 70px;
   border: none;
+  outline: none;
 `;
 
 const Form = styled.form`
-  margin-top: -130px;
+  margin-top: -135px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -36,33 +37,47 @@ const InputContainer = styled.div`
 
 function Search({ onFoodInput }) {
   const [searchValue, setSearchValue] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
 
+  const clearState = () => {
+    setSearchValue("");
+  };
   function handleSubmit(event) {
     event.preventDefault();
-    //console.log("handleSubmit", searchValue);
 
-    searchFood(searchValue).then(dishes => {
-      onFoodInput(dishes);
-    });
+    searchFood(searchValue)
+      .then(dishes => {
+        onFoodInput(dishes);
+      })
+      .then(() => setLoading(false))
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      })
+      .then(clearState());
   }
 
   function handleChange(event) {
     const lowerCaseValue = event.target.value.toLowerCase();
     setSearchValue(lowerCaseValue);
-    //console.log("handleChange", lowerCaseValue);
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputContainer>
-        <SearchIcon src="images/noun_Search_743838.png" />
-        <RecipeInput
-          onChange={handleChange}
-          value={searchValue}
-          placeholder="Any ideas for your meal?"
-        />
-      </InputContainer>
-    </Form>
+    <>
+      {!loading && !searchValue && (
+        <RecipeInput onChange={handleChange} value={"Nothing"} /> //Add correct info! Maybe modal?
+      )}
+      <Form onSubmit={handleSubmit}>
+        <InputContainer>
+          <SearchIcon src="images/noun_Search_743838.png" />
+          <RecipeInput
+            onChange={handleChange}
+            value={searchValue}
+            placeholder="Any ideas for your meal?"
+          />
+        </InputContainer>
+      </Form>
+    </>
   );
 }
 
