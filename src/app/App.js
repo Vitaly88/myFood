@@ -55,8 +55,16 @@ function App() {
     setFavoritesToStorage(favorites);
   }, [favorites]);
 
+  //console.log(favorites);
+
   function handleFavoriteSelect(favorite) {
-    setFavorites([...favorites, favorite]);
+    const index = favorites.findIndex(item => item._id === favorite._id);
+
+    if (index === -1) {
+      setFavorites([...favorites, favorite]);
+    } else {
+      return favorites;
+    }
   }
 
   return (

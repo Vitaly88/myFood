@@ -7,7 +7,6 @@ import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
 import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
-//import uuid from "uuid/v4";
 
 const StyledImage = styled.img`
   margin-top: 150px;
@@ -50,6 +49,7 @@ function AddCarousel({ dishes, history, onFavSelect }) {
       title: dish.name,
       image: dish.imageSrc
     };
+
     onFavSelect(newFav);
   }
 
