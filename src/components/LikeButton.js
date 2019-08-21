@@ -6,8 +6,8 @@ const StyledButton = styled.button`
   position: absolute;
   color: #5938e0;
   font-size: 30px;
-  left: 5px;
-  margin-top: -45px;
+  left: ${props => props.left || "5px"};
+  margin-top: ${props => props.top || "-45px"};
 `;
 
 function LikeButton({ icon, active, onClick, className }) {

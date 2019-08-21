@@ -20,7 +20,7 @@ const StyledBack = styled.div`
   background-color: white;
   padding: 5px;
 `;
-function GroceryList({ meals, mealId }) {
+function GroceryList({ meals }) {
   const ingredients = meals.map(meal => meal.ingredients).flat();
   const measure = meals.map(meal => meal.measure).flat();
   return (
@@ -44,7 +44,7 @@ function GroceryList({ meals, mealId }) {
               </td>
               <StyledContent>
                 {measure.map((elem, index) => (
-                  <StyledBack key={elem + index}>{elem}</StyledBack>
+                  <StyledBack key={elem._id}>{elem}</StyledBack>
                 ))}
               </StyledContent>
             </tr>

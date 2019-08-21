@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
 import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
-//import Results from "../components/Results";
+//import uuid from "uuid/v4";
 
 const StyledImage = styled.img`
   margin-top: 150px;
@@ -45,6 +45,7 @@ function AddCarousel({ dishes, history, onFavSelect }) {
 
   function handleAddFavorite(dish) {
     const newFav = {
+      _id: dish._id,
       mealId: dish.mealId,
       title: dish.name,
       image: dish.imageSrc
@@ -65,22 +66,20 @@ function AddCarousel({ dishes, history, onFavSelect }) {
       pauseOnHover={true}
     >
       {dishes.map(dish => (
-        <div key={dish.mealId}>
-          <CenteredContent>
-            <StyledImage
-              onClick={() => handlePictureLink(dish)}
-              alt={dish.name}
-              src={dish.imageSrc}
-            />
-            <StyledText>{truncate(dish.name, 2)}</StyledText>
-            <StyledLike
-              icon="fa-heart"
-              onClick={() => handleAddFavorite(dish)}
-              // active={bookmarked}
-              // onClick={onBookmark}
-            />
-          </CenteredContent>
-        </div>
+        <CenteredContent key={dish._id}>
+          <StyledImage
+            onClick={() => handlePictureLink(dish)}
+            alt={dish.name}
+            src={dish.imageSrc}
+          />
+          <StyledText>{truncate(dish.name, 2)}</StyledText>
+          <StyledLike
+            icon="fa-heart"
+            onClick={() => handleAddFavorite(dish)}
+            // active={bookmarked}
+            // onClick={onBookmark}
+          />
+        </CenteredContent>
       ))}
     </Slider>
   );

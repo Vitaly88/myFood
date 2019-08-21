@@ -34,8 +34,13 @@ function App() {
   const [favorites, setFavorites] = React.useState(getFavoritesFromStorage());
 
   const handleMealDelete = id => {
-    const filteredItems = meals.filter(item => item.mealId !== id);
+    const filteredItems = meals.filter(item => item._id !== id);
     setMeals(filteredItems);
+  };
+
+  const handleFavDelete = id => {
+    const filteredItems = favorites.filter(item => item._id !== id);
+    setFavorites(filteredItems);
   };
 
   React.useEffect(() => {
@@ -102,6 +107,7 @@ function App() {
                 render={props => (
                   <Favorites
                     favorites={favorites}
+                    onMealDelete={handleFavDelete}
                     component={Favorites}
                     {...props}
                   />

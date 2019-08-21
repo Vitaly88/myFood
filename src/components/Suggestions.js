@@ -38,10 +38,12 @@ function Suggestions({ dishes, history, onFavSelect }) {
 
   function handleAddFavorite(dish) {
     const newFav = {
+      _id: dish._id,
       mealId: dish.mealId,
       title: dish.name,
       image: dish.imageSrc
     };
+
     onFavSelect(newFav);
   }
 
@@ -55,7 +57,7 @@ function Suggestions({ dishes, history, onFavSelect }) {
       arrows={false}
     >
       {dishes.map(dish => (
-        <CenteredContent key={dish.mealId}>
+        <CenteredContent key={dish._id}>
           <StyledImage
             onClick={() => handlePictureLink(dish)}
             alt={dish.name}

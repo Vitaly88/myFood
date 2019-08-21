@@ -48,16 +48,16 @@ function GroupPicTitle({
   imageSrc,
   onSelectDish,
   onDeleteDish,
-  mealId,
-  ingredients,
+  _id,
   dish,
   history
 }) {
   function handlePictureLink() {
     history.push(`recipe/${dish.mealId}`);
   }
+  console.log();
   return (
-    <div key={mealId}>
+    <div key={_id}>
       <BoxItems>
         <IconImage
           alt={name}
@@ -66,7 +66,6 @@ function GroupPicTitle({
         />
         <TextDescription>
           {name}
-          {ingredients}
           {/* {dishes.map(dish => (
               <DietTag>{dish.diet}</DietTag>
             ))} */}
@@ -83,9 +82,7 @@ GroupPicTitle.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   onSelectDish: PropTypes.func.isRequired,
   onDeleteDish: PropTypes.func.isRequired,
-  mealId: PropTypes.string.isRequired,
-  ingredients: PropTypes.array.isRequired,
-  dish: PropTypes.array.isRequired,
+  dish: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 };
 export default withRouter(GroupPicTitle);

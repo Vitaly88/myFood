@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import PopUpDatePicker from "./PopUpDatePicker";
 import GroupPicTitle from "./GroupPicTitle";
+//import uuid from "uuid/v4";
 
 const StyledResults = styled.div`
   margin-top: 120px;
@@ -24,6 +25,7 @@ function Results({ dishes, onMealSelect }) {
 
   function handleTimeSelect(result) {
     const newMeal = {
+      _id: selectedDish._id,
       mealId: selectedDish.mealId,
       mealType: result.mealType,
       date: result.day.toLocaleDateString("en-US", options),
@@ -39,6 +41,7 @@ function Results({ dishes, onMealSelect }) {
     return (
       <StyledResults>
         <GroupPicTitle
+          key={selectedDish._id}
           dish={selectedDish}
           name={selectedDish.name}
           imageSrc={selectedDish.imageSrc}
@@ -52,7 +55,7 @@ function Results({ dishes, onMealSelect }) {
     <StyledResults>
       {dishes.map(dish => (
         <GroupPicTitle
-          key={dish.name}
+          key={dish._id}
           dish={dish}
           name={dish.name}
           imageSrc={dish.imageSrc}

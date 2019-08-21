@@ -1,3 +1,4 @@
+import uuid from "uuid/v4";
 const dummy = new Array(20).fill("");
 
 export function searchFood(searchValue) {
@@ -15,6 +16,7 @@ export function searchFood(searchValue) {
     .then(result => {
       const dishes = result.meals.map(dish => {
         return {
+          _id: uuid(),
           mealId: dish.idMeal,
           name: dish.strMeal,
           imageSrc: dish.strMealThumb,
@@ -38,6 +40,7 @@ export function getMeal(id) {
     .then(res => res.json())
     .then(result => {
       return {
+        _id: uuid(),
         mealId: result.meals[0].idMeal,
         name: result.meals[0].strMeal,
         imageSrc: result.meals[0].strMealThumb,
@@ -61,6 +64,7 @@ export function getCategory(searchValue) {
     .then(result => {
       const dishes = result.meals.map(dish => {
         return {
+          _id: uuid(),
           mealId: dish.idMeal,
           name: dish.strMeal,
           imageSrc: dish.strMealThumb

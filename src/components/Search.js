@@ -11,6 +11,7 @@ const RecipeInput = styled.input`
   font-family: "Arial", "Helvetica", sans-serif;
   padding-left: 70px;
   border: none;
+  outline: none;
 `;
 
 const Form = styled.form`

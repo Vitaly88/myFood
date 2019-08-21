@@ -28,7 +28,7 @@ function MealPlanner({ meals, onMealDelete }) {
       <GroupedInfo>
         {meals
           .map(dish => (
-            <div key={dish.mealId}>
+            <div key={dish._id}>
               <Headlines>
                 <StyledDate>{dish.date}</StyledDate>
                 <br />
@@ -39,7 +39,7 @@ function MealPlanner({ meals, onMealDelete }) {
                 dish={dish}
                 name={dish.title}
                 imageSrc={dish.image}
-                onDeleteDish={() => onMealDelete(dish.mealId)}
+                onDeleteDish={() => onMealDelete(dish._id)}
               />
             </div>
           ))

@@ -6,6 +6,11 @@ import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
 import Loader from "../components/Loader";
 
+const ImageContainer = styled.div`
+  position: relative;
+  left: -100px;
+`;
+
 const StyledImage = styled.img`
   width: 220px;
   border-radius: 20px;
@@ -26,9 +31,6 @@ const StyledText = styled.div`
   line-height: 1.5;
   text-justify: auto;
   text-align: justify;
-`;
-const StyledLike = styled(LikeButton)`
-  position: absolute;
 `;
 
 const StyledHeadlines = styled.h2`
@@ -51,27 +53,27 @@ function Recipe({ match, onFavSelect }) {
       });
   }, [match.params.id]);
 
-  if (!meal) {
-    return null;
-  }
-
   function handleFavChoice() {
     const newFav = {
+      //_id: meal._id,
       mealId: meal.mealId,
       title: meal.name,
       image: meal.imageSrc
     };
     onFavSelect(newFav);
   }
+
   return (
     <>
       {!loading && !meal && <div>Sorry, something has gone wrong!</div>}
       {!loading && meal && (
         <>
           <Headline size="L">{truncate(meal.name, 2)}</Headline>
-          <StyledContent key={meal.mealId}>
+          <StyledContent>
             <StyledImage alt={meal.name} src={meal.imageSrc} />
-            <StyledLike icon="fa-heart" onClick={handleFavChoice} />
+            <ImageContainer>
+              <LikeButton icon="fa-heart" onClick={handleFavChoice} />
+            </ImageContainer>
             <StyledHeadlines>Ingredients</StyledHeadlines>
             <table>
               <thead>
@@ -89,7 +91,7 @@ function Recipe({ match, onFavSelect }) {
                   </td>
                   <td>
                     {meal.measure.map((elem, index) => (
-                      <div key={elem + index}>{elem}</div>
+                      <div key={meal._id + index}>{elem}</div>
                     ))}
                   </td>
                 </tr>
