@@ -2,6 +2,8 @@ import uuid from "uuid/v4";
 const dummy = new Array(20).fill("");
 
 export function searchFood(searchValue) {
+  //setTimeout(() => abortController.abort(), 5000);
+
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
   )
@@ -30,7 +32,6 @@ export function searchFood(searchValue) {
             .filter(Boolean)
         };
       });
-
       return dishes;
     });
 }

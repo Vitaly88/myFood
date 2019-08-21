@@ -5,6 +5,7 @@ import { getMeal } from "../utils/mealApi";
 import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
 import Loader from "../components/Loader";
+import PropTypes from "prop-types";
 
 const ImageContainer = styled.div`
   position: relative;
@@ -106,5 +107,10 @@ function Recipe({ match, onFavSelect }) {
     </>
   );
 }
+
+Recipe.propTypes = {
+  match: PropTypes.object.isRequired,
+  onFavSelect: PropTypes.func.isRequired
+};
 
 export default Recipe;

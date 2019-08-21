@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import Headline from "../components/Headline";
 
 const StyledIngredients = styled.div`
@@ -54,5 +54,9 @@ function GroceryList({ meals }) {
     </>
   );
 }
+
+GroceryList.propTypes = {
+  meals: PropTypes.array.isRequired
+};
 
 export default GroceryList;

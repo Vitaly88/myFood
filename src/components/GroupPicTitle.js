@@ -55,7 +55,7 @@ function GroupPicTitle({
   function handlePictureLink() {
     history.push(`recipe/${dish.mealId}`);
   }
-  console.log();
+
   return (
     <div key={_id}>
       <BoxItems>
@@ -80,8 +80,8 @@ function GroupPicTitle({
 GroupPicTitle.propTypes = {
   name: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
-  onSelectDish: PropTypes.func.isRequired,
-  onDeleteDish: PropTypes.func.isRequired,
+  onSelectDish: PropTypes.func,
+  onDeleteDish: PropTypes.func,
   dish: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 };

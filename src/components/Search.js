@@ -39,9 +39,11 @@ function Search({ onFoodInput }) {
   const [searchValue, setSearchValue] = React.useState("");
   const [loading, setLoading] = React.useState(true);
 
+  const controller = new AbortController();
   const clearState = () => {
     setSearchValue("");
   };
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -49,12 +51,13 @@ function Search({ onFoodInput }) {
       .then(dishes => {
         onFoodInput(dishes);
       })
+      .then(clearState())
       .then(() => setLoading(false))
       .catch(error => {
         console.error(error);
         setLoading(false);
-      })
-      .then(clearState());
+      });
+    controller.abort();
   }
 
   function handleChange(event) {
@@ -71,6 +74,7 @@ function Search({ onFoodInput }) {
         <InputContainer>
           <SearchIcon src="images/noun_Search_743838.png" />
           <RecipeInput
+            type="text"
             onChange={handleChange}
             value={searchValue}
             placeholder="Any ideas for your meal?"

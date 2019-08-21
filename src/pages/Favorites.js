@@ -1,6 +1,6 @@
 import React from "react";
 //import styled from "styled-components";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import Headline from "../components/Headline";
 import GroupPicTitle from "../components/GroupPicTitle";
 //import { withRouter } from "react-router-dom";
@@ -27,5 +27,10 @@ function Favorites({ favorites, onMealDelete }) {
     </>
   );
 }
+
+Favorites.propTypes = {
+  favorites: PropTypes.array.isRequired,
+  onMealDelete: PropTypes.func.isRequired
+};
 
 export default Favorites;
