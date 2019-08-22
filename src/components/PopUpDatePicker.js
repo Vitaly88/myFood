@@ -53,11 +53,11 @@ function PopUpDatePicker({ onTimeSelect }) {
     const errors = {};
 
     if (selectedDay === "") {
-      errors.selectedDay = "Please choose the date!";
+      errors.selectedDay = "Please select the date!";
     }
 
     if (selectedOption === null) {
-      errors.selectedOption = "Please choose the type of the meal!";
+      errors.selectedOption = "Please select the type of the meal!";
     }
     return Object.keys(errors).length === 0 ? null : errors;
   }

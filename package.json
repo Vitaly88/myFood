@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "css-loader": "^3.2.0",
     "cypress": "^3.4.1",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
