@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   position: absolute;
-  color: #5938e0;
+  color: ${props => (props.active ? "#5938e0" : "red")};
   font-size: 30px;
   left: ${props => props.left || "5px"};
   margin-top: ${props => props.top || "-45px"};
@@ -13,7 +13,7 @@ const StyledButton = styled.button`
 function LikeButton({ icon, active, onClick, className }) {
   return (
     <StyledButton active={active} onClick={onClick}>
-      <i className={`far ${icon}`} />
+      <i className={`fas ${icon}`} />
     </StyledButton>
   );
 }
