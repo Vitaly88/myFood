@@ -40,13 +40,37 @@ const AddMealButton = styled.button`
   margin-bottom: 20px;
 `;
 
+const StyledError = styled.div`
+  color: #a11035;
+`;
+
 function PopUpDatePicker({ onTimeSelect }) {
   const [selectedDay, setSelectedDay] = React.useState("");
   const [selectedOption, setSelectedOption] = React.useState(null);
+  const [errors, setErrors] = React.useState({});
+
+  function validate() {
+    const errors = {};
+
+    if (selectedDay === "") {
+      errors.selectedDay = "Please choose the date!";
+    }
+
+    if (selectedOption === null) {
+      errors.selectedOption = "Please choose the type of the meal!";
+    }
+    return Object.keys(errors).length === 0 ? null : errors;
+  }
 
   function handleAddMeal(event) {
     event.preventDefault();
 
+    const errors = validate();
+
+    if (errors) {
+      setErrors(errors);
+      return;
+    }
     onTimeSelect({ day: selectedDay, mealType: selectedOption });
   }
   const modifiersStyles = {
@@ -70,7 +94,10 @@ function PopUpDatePicker({ onTimeSelect }) {
         onDayClick={handleDayClick}
         firstDayOfWeek={1}
         modifiersStyles={modifiersStyles}
+        name="date"
       />
+      {errors.selectedDay && <StyledError>{errors.selectedDay}</StyledError>}
+      <br />
       <RadioGroup>
         <label>
           <input
@@ -103,6 +130,10 @@ function PopUpDatePicker({ onTimeSelect }) {
           Dinner
         </label>
       </RadioGroup>
+      <br />
+      {errors.selectedOption && (
+        <StyledError>{errors.selectedOption}</StyledError>
+      )}
       <br />
       <AddMealButton>Add to Meal Planner</AddMealButton>
     </PopUpForm>

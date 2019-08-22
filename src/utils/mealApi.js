@@ -2,8 +2,6 @@ import uuid from "uuid/v4";
 const dummy = new Array(20).fill("");
 
 export function searchFood(searchValue) {
-  //setTimeout(() => abortController.abort(), 5000);
-
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
   )
@@ -38,7 +36,14 @@ export function searchFood(searchValue) {
 
 export function getMeal(id) {
   return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .catch(console.error)
     .then(result => {
       return {
         _id: uuid(),
@@ -61,7 +66,14 @@ export function getCategory(searchValue) {
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${searchValue}`
   )
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .catch(console.error)
     .then(result => {
       const dishes = result.meals.map(dish => {
         return {
