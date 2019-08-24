@@ -12,7 +12,8 @@ const PlusButton = styled.button`
   font-weight: bold;
   color: #5938e0;
   text-align: center;
-  /* margin: 19px; */
+  padding-bottom: 4px;
+  padding-left: 7.5px;
 
   &:hover {
     background-color: #5938e0;

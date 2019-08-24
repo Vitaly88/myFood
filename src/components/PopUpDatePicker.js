@@ -74,7 +74,7 @@ function PopUpDatePicker({ onTimeSelect }) {
       color: "#fff",
       backgroundColor: "#5938e0"
     },
-    selectedDay: {
+    selected: {
       color: "#fff",
       backgroundColor: "#5938e0"
     }

@@ -20,7 +20,7 @@ function LikeButton({ icon, bookmarked, onClick }) {
 }
 LikeButton.propTypes = {
   icon: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
   onClick: PropTypes.func.isRequired
 };
 export default LikeButton;

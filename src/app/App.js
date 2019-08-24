@@ -103,6 +103,7 @@ function App() {
                 render={props => (
                   <Recipe
                     onFavSelect={handleFavoriteSelect}
+                    onMealSelect={handleMealSelect}
                     meals={meals}
                     {...props}
                   />

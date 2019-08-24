@@ -6,10 +6,18 @@ import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
 import Loader from "../components/Loader";
 import PropTypes from "prop-types";
+import { getFavoritesFromStorage } from "../utils/storage";
+import AddButton from "../components/AddButton";
+import PopUpDatePicker from "../components/PopUpDatePicker";
+import IngredientsTable from "../components/IngredientsTable";
 
 const ImageContainer = styled.div`
   position: relative;
   left: -100px;
+`;
+
+const StyledAddButton = styled(AddButton)`
+  margin-top: 20px;
 `;
 
 const StyledImage = styled.img`
@@ -38,9 +46,11 @@ const StyledHeadlines = styled.h2`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-function Recipe({ match, onFavSelect }) {
+function Recipe({ match, onFavSelect, onMealSelect, history }) {
   const [meal, setMeal] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
+  const [selectedDish, setSelectedDish] = React.useState(null);
+  const [bookmark, setBookmark] = React.useState(getFavoritesFromStorage());
 
   React.useEffect(() => {
     getMeal(match.params.id)
@@ -54,14 +64,89 @@ function Recipe({ match, onFavSelect }) {
       });
   }, [match.params.id]);
 
-  function handleFavChoice() {
+  function handleFavChoice(id) {
     const newFav = {
-      //_id: meal._id,
+      _id: meal._id,
       mealId: meal.mealId,
       title: meal.name,
-      image: meal.imageSrc
+      image: meal.imageSrc,
+      bookmarked: !meal.bookmarked
     };
     onFavSelect(newFav);
+
+    setMeal({
+      ...meal,
+      bookmarked: !meal.bookmarked
+    });
+
+    // const index = bookmark.filter(item => item.mealId === id.mealId);
+
+    // console.log(index);
+  }
+  //console.log(bookmark);
+
+  // React.useEffect(() => {
+  //   console.log(getFavoritesFromStorage().then(res => res.json()));
+
+  //   // if (index === -1) {
+  //   //   setFavorites([...favorites, favorite]);
+  //   // } else {
+  //   //   return favorites;
+  //   // }
+  // }, []);
+  function handleSelectDish(meal) {
+    console.log("handleSelectDish");
+    setSelectedDish(meal);
+  }
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  function handleTimeSelect(result) {
+    const newMeal = {
+      _id: selectedDish._id,
+      mealId: selectedDish.mealId,
+      mealType: result.mealType,
+      date: result.day.toLocaleDateString("en-US", options),
+      title: selectedDish.name,
+      image: selectedDish.imageSrc
+    };
+    onMealSelect(newMeal);
+    history.push("/planner");
+  }
+
+  if (selectedDish) {
+    return (
+      <div>
+        <Headline size="L">{truncate(meal.name, 2)}</Headline>
+        {!loading && !meal && <div>Sorry, something has gone wrong!</div>}
+        {!loading && meal && (
+          <>
+            <Headline size="L">{truncate(meal.name, 2)}</Headline>
+            <StyledContent>
+              <StyledImage alt={meal.name} src={meal.imageSrc} />
+              <ImageContainer>
+                <LikeButton
+                  bookmarked={meal.bookmarked}
+                  icon="fa-heart"
+                  onClick={handleFavChoice}
+                />
+              </ImageContainer>
+              <StyledAddButton onClick={() => handleSelectDish(meal)} />
+              <StyledHeadlines>Ingredients</StyledHeadlines>
+              <IngredientsTable dish={meal} />
+              <StyledHeadlines>Preparation</StyledHeadlines>
+              <StyledText>{meal.recipe}</StyledText>
+            </StyledContent>
+          </>
+        )}
+        {loading && <Loader />}
+        {selectedDish && <PopUpDatePicker onTimeSelect={handleTimeSelect} />}
+      </div>
+    );
   }
 
   return (
@@ -73,31 +158,15 @@ function Recipe({ match, onFavSelect }) {
           <StyledContent>
             <StyledImage alt={meal.name} src={meal.imageSrc} />
             <ImageContainer>
-              <LikeButton icon="fa-heart" onClick={handleFavChoice} />
+              <LikeButton
+                bookmarked={meal.bookmarked}
+                icon="fa-heart"
+                onClick={handleFavChoice}
+              />
             </ImageContainer>
+            <StyledAddButton onClick={() => handleSelectDish(meal)} />
             <StyledHeadlines>Ingredients</StyledHeadlines>
-            <table>
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    {meal.ingredients.map((elem, index) => (
-                      <div key={elem + index}>{elem}</div>
-                    ))}
-                  </td>
-                  <td>
-                    {meal.measure.map((elem, index) => (
-                      <div key={meal._id + index}>{elem}</div>
-                    ))}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <IngredientsTable dish={meal} />
             <StyledHeadlines>Preparation</StyledHeadlines>
             <StyledText>{meal.recipe}</StyledText>
           </StyledContent>
