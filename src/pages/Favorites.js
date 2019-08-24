@@ -4,7 +4,6 @@ import Headline from "../components/Headline";
 import GroupPicTitle from "../components/GroupPicTitle";
 
 function Favorites({ favorites, onMealDelete }) {
-  //console.log(favorites);
   return (
     <>
       <Headline size="L">Favorites</Headline>

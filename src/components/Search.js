@@ -71,12 +71,13 @@ function Search({ onFoodInput }) {
       .then(dishes => {
         onFoodInput(dishes);
       })
-      .then(clearState())
       .then(() => setLoading(false))
+
       .catch(error => {
         console.error(error);
         setLoading(false);
-      });
+      })
+      .then(clearState());
     // .then(controller.abort());
   }
 

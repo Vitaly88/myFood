@@ -6,7 +6,7 @@ import { truncate } from "../utils/truncate";
 import LikeButton from "../components/LikeButton";
 import Loader from "../components/Loader";
 import PropTypes from "prop-types";
-import { getFavoritesFromStorage } from "../utils/storage";
+//import { getFavoritesFromStorage } from "../utils/storage";
 import AddButton from "../components/AddButton";
 import PopUpDatePicker from "../components/PopUpDatePicker";
 import IngredientsTable from "../components/IngredientsTable";
@@ -50,7 +50,7 @@ function Recipe({ match, onFavSelect, onMealSelect, history }) {
   const [meal, setMeal] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [selectedDish, setSelectedDish] = React.useState(null);
-  const [bookmark, setBookmark] = React.useState(getFavoritesFromStorage());
+  //const [bookmark, setBookmark] = React.useState(getFavoritesFromStorage());
 
   React.useEffect(() => {
     getMeal(match.params.id)
@@ -95,7 +95,6 @@ function Recipe({ match, onFavSelect, onMealSelect, history }) {
   //   // }
   // }, []);
   function handleSelectDish(meal) {
-    console.log("handleSelectDish");
     setSelectedDish(meal);
   }
   const options = {

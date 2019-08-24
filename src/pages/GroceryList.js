@@ -31,11 +31,6 @@ const StyledRows = styled.tr`
 `;
 
 const StyledDiv = styled.div`
-  /* &:nth-child(even) {
-    background-color: #5938e0;
-    opacity: 0.7;
-    color: white;
-  } */
   font-size: 14px;
   margin: 5px 0;
   text-align: left;
