@@ -7,7 +7,10 @@
     "cypress": "^3.4.1",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "jquery": "^3.4.1",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-day-picker": "^7.3.0",
@@ -20,7 +23,7 @@
     "uuid": "^3.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
