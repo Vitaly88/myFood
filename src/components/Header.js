@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import Headline from "../components/Headline";
-import PropTypes from "prop-types";
 import Oval from "../components/Oval";
 
 const ContainerHeader = styled.div`
@@ -11,16 +9,12 @@ const ContainerHeader = styled.div`
   justify-content: center;
 `;
 
-function Header({ props }) {
+function Header() {
   return (
     <ContainerHeader>
       <Oval />
     </ContainerHeader>
   );
 }
-
-Header.propTypes = {
-  title: PropTypes.string
-};
 
 export default Header;

@@ -6,7 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
 import { truncate } from "../utils/truncate";
-import LikeButton from "./LikeButton";
+
+/* LikeButton will be added with a new release of the app. Don't delete the event handler and the like-component */
+
+//import LikeButton from "./LikeButton";
 
 const StyledImage = styled.img`
   margin-top: 0;
@@ -36,16 +39,16 @@ function Suggestions({ dishes, history, onFavSelect }) {
     history.push(`recipe/${dish.mealId}`);
   }
 
-  function handleAddFavorite(dish) {
-    const newFav = {
-      _id: dish._id,
-      mealId: dish.mealId,
-      title: dish.name,
-      image: dish.imageSrc
-    };
+  // function handleAddFavorite(dish) {
+  //   const newFav = {
+  //     _id: dish._id,
+  //     mealId: dish.mealId,
+  //     title: dish.name,
+  //     image: dish.imageSrc
+  //   };
 
-    onFavSelect(newFav);
-  }
+  //   onFavSelect(newFav);
+  // }
 
   return (
     <Slider
@@ -63,7 +66,7 @@ function Suggestions({ dishes, history, onFavSelect }) {
             alt={dish.name}
             src={dish.imageSrc}
           />
-          <LikeButton icon="fa-heart" onClick={() => handleAddFavorite(dish)} />
+          {/* <LikeButton icon="fa-heart" onClick={() => handleAddFavorite(dish)} /> */}
           <StyledText>{truncate(dish.name, 2)}</StyledText>
         </CenteredContent>
       ))}

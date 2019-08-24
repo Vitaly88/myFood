@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Headline from "../components/Headline";
+import uuid from "uuid/v4";
 
 const StyledIngredients = styled.div`
   color: #5938e0;
@@ -39,12 +40,12 @@ function GroceryList({ meals }) {
             <tr>
               <td>
                 {ingredients.map((elem, index) => (
-                  <StyledBack key={elem + index}>{elem}</StyledBack>
+                  <StyledBack key={uuid()}>{elem}</StyledBack>
                 ))}
               </td>
               <StyledContent>
                 {measure.map((elem, index) => (
-                  <StyledBack key={elem._id}>{elem}</StyledBack>
+                  <StyledBack key={uuid()}>{elem}</StyledBack>
                 ))}
               </StyledContent>
             </tr>

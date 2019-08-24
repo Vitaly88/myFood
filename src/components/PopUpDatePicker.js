@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import { fadeIn } from "../utils/animations";
+import RadioGroup from "../components/RadioGroup";
 
 const PopUpForm = styled.form`
   display: flex;
@@ -23,11 +24,6 @@ const PopUpForm = styled.form`
   bottom: 60px;
   animation: ${fadeIn} 1s 1 both;
   position: fixed;
-`;
-
-const RadioGroup = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const AddMealButton = styled.button`
@@ -77,6 +73,10 @@ function PopUpDatePicker({ onTimeSelect }) {
     today: {
       color: "#fff",
       backgroundColor: "#5938e0"
+    },
+    selectedDay: {
+      color: "#fff",
+      backgroundColor: "#5938e0"
     }
   };
 
@@ -98,38 +98,10 @@ function PopUpDatePicker({ onTimeSelect }) {
       />
       {errors.selectedDay && <StyledError>{errors.selectedDay}</StyledError>}
       <br />
-      <RadioGroup>
-        <label>
-          <input
-            type="radio"
-            name="meal-type"
-            value="breakfast"
-            checked={selectedOption === "breakfast"}
-            onChange={handleOptionChange}
-          />
-          Breakfast
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="meal-type"
-            value="lunch"
-            checked={selectedOption === "lunch"}
-            onChange={handleOptionChange}
-          />
-          Lunch
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="meal-type"
-            value="dinner"
-            checked={selectedOption === "dinner"}
-            onChange={handleOptionChange}
-          />
-          Dinner
-        </label>
-      </RadioGroup>
+      <RadioGroup
+        mealType={selectedOption}
+        onRadioSelect={handleOptionChange}
+      />
       <br />
       {errors.selectedOption && (
         <StyledError>{errors.selectedOption}</StyledError>

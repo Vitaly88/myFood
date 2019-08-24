@@ -6,7 +6,6 @@ import { fadeOut } from "../utils/animations";
 
 const Modal = styled.button`
   display: flex;
-  /* color: #5938e0; */
   color: white;
   align-items: center;
   justify-content: center;

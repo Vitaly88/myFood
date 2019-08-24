@@ -33,16 +33,6 @@ const BoxItems = styled.div`
   align-items: center;
 `;
 
-// const DietTag = styled.button`
-//   padding: 5px 3px;
-//   background-color: #5938e0;
-//   color: white;
-//   font-family: Arial, Helvetica, sans-serif;
-//   font-size: 10px;
-//   font-weight: bold;
-//   border-radius: 20px;
-// `
-
 function GroupPicTitle({
   name,
   imageSrc,
@@ -64,12 +54,7 @@ function GroupPicTitle({
           src={imageSrc}
           onClick={() => handlePictureLink(dish)}
         />
-        <TextDescription>
-          {name}
-          {/* {dishes.map(dish => (
-              <DietTag>{dish.diet}</DietTag>
-            ))} */}
-        </TextDescription>
+        <TextDescription>{name}</TextDescription>
         {onSelectDish && <AddButton onClick={() => onSelectDish()} />}
         {onDeleteDish && <DeleteButton onClick={() => onDeleteDish()} />}
       </BoxItems>

@@ -4,23 +4,23 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   position: absolute;
-  color: ${props => (props.active ? "#5938e0" : "red")};
+  color: ${props => (props.active ? "red" : "#5938e0")};
   font-size: 30px;
   left: ${props => props.left || "5px"};
   margin-top: ${props => props.top || "-45px"};
+  transition: all 0.4s ease;
 `;
 
-function LikeButton({ icon, active, onClick, className }) {
+function LikeButton({ icon, bookmarked, onClick }) {
   return (
-    <StyledButton active={active} onClick={onClick}>
+    <StyledButton active={bookmarked} onClick={onClick}>
       <i className={`fas ${icon}`} />
     </StyledButton>
   );
 }
 LikeButton.propTypes = {
   icon: PropTypes.string.isRequired,
-  active: PropTypes.bool,
-  className: PropTypes.string,
-  onClick: PropTypes.func
+  active: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 export default LikeButton;

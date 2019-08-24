@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { withRouter } from "react-router-dom";
 import { truncate } from "../utils/truncate";
-import LikeButton from "../components/LikeButton";
+//import LikeButton from "../components/LikeButton";
 
 const StyledImage = styled.img`
   margin-top: 150px;
@@ -21,15 +21,13 @@ const CenteredContent = styled.div`
   position: relative;
 `;
 
-const StyledLike = styled(LikeButton)``;
-
 const StyledText = styled.button`
   color: white;
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 15px;
   position: absolute;
   margin-top: -40px;
-  margin-left: 55px;
+  margin-left: 20px;
   border-radius: 7px;
   background-color: #5938e0;
   height: 25px;
@@ -37,21 +35,28 @@ const StyledText = styled.button`
 `;
 
 function AddCarousel({ dishes, history, onFavSelect }) {
-  //const [showBookmarked, setShowBookmarked] = React.useState(false);
+  // const [showLike, setShowLike] = React.useState(false);
+
   function handlePictureLink(dish) {
     history.push(`recipe/${dish.mealId}`);
   }
 
-  function handleAddFavorite(dish) {
-    const newFav = {
-      _id: dish._id,
-      mealId: dish.mealId,
-      title: dish.name,
-      image: dish.imageSrc
-    };
+  // function handleAddFavorite(dish) {
+  //   const newFav = {
+  //     _id: dish._id,
+  //     mealId: dish.mealId,
+  //     title: dish.name,
+  //     image: dish.imageSrc
+  //   };
 
-    onFavSelect(newFav);
-  }
+  //   onFavSelect(newFav);
+  // }
+
+  // function handleToggle(dish) {
+  //   const filteredDishes = dishes.findIndex(item => item._id === dish._id);
+
+  //   console.log(filteredDishes);
+  // }
 
   return (
     <Slider
@@ -73,12 +78,14 @@ function AddCarousel({ dishes, history, onFavSelect }) {
             src={dish.imageSrc}
           />
           <StyledText>{truncate(dish.name, 2)}</StyledText>
-          <StyledLike
+
+          {/* <LikeButton
+            showLike={showLike}
             icon="fa-heart"
-            onClick={() => handleAddFavorite(dish)}
-            // active={bookmarked}
-            // onClick={onBookmark}
-          />
+            onClick={() => handleToggle(dish)}
+            // onClick={() => handleAddFavorite(dish._id)}
+            active={showLike}
+          /> */}
         </CenteredContent>
       ))}
     </Slider>
