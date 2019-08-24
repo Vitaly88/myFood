@@ -5,22 +5,47 @@ import Headline from "../components/Headline";
 import uuid from "uuid/v4";
 
 const StyledIngredients = styled.div`
+  display: flex;
   color: #5938e0;
-  margin-left: 20px;
+  justify-content: center;
+  margin: 20px;
 `;
 
-const StyledContent = styled.td`
-  text-align: center;
+const StyledTable = styled.table`
+  border-collapse: collapse;
+  border: none;
 `;
 
 const StyledHead = styled.thead`
   font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
 `;
 
-const StyledBack = styled.div`
-  background-color: white;
-  padding: 5px;
+const StyledBody = styled.tbody`
+  text-align: left;
 `;
+const StyledRows = styled.tr`
+  width: 100px;
+`;
+
+const StyledDiv = styled.div`
+  /* &:nth-child(even) {
+    background-color: #5938e0;
+    opacity: 0.7;
+    color: white;
+  } */
+  font-size: 14px;
+  margin: 5px 0;
+  text-align: left;
+`;
+
+const StyledTd = styled.td`
+  text-align: center;
+  padding: 10px 20px;
+`;
+
 function GroceryList({ meals }) {
   const ingredients = meals.map(meal => meal.ingredients).flat();
   const measure = meals.map(meal => meal.measure).flat();
@@ -29,28 +54,28 @@ function GroceryList({ meals }) {
       <Headline size="L">Grocery List</Headline>
 
       <StyledIngredients>
-        <table>
+        <StyledTable>
           <StyledHead>
             <tr>
               <th>Ingredients</th>
               <th>Amount</th>
             </tr>
           </StyledHead>
-          <tbody>
-            <tr>
-              <td>
-                {ingredients.map((elem, index) => (
-                  <StyledBack key={uuid()}>{elem}</StyledBack>
+          <StyledBody>
+            <StyledRows>
+              <StyledTd>
+                {ingredients.map(elem => (
+                  <StyledDiv key={uuid()}>{elem}</StyledDiv>
                 ))}
-              </td>
-              <StyledContent>
-                {measure.map((elem, index) => (
-                  <StyledBack key={uuid()}>{elem}</StyledBack>
+              </StyledTd>
+              <StyledTd>
+                {measure.map(elem => (
+                  <StyledDiv key={uuid()}>{elem}</StyledDiv>
                 ))}
-              </StyledContent>
-            </tr>
-          </tbody>
-        </table>
+              </StyledTd>
+            </StyledRows>
+          </StyledBody>
+        </StyledTable>
       </StyledIngredients>
     </>
   );

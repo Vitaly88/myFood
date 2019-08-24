@@ -112,7 +112,9 @@ function Recipe({ match, onFavSelect, onMealSelect, history }) {
       mealType: result.mealType,
       date: result.day.toLocaleDateString("en-US", options),
       title: selectedDish.name,
-      image: selectedDish.imageSrc
+      image: selectedDish.imageSrc,
+      ingredients: selectedDish.ingredients,
+      measure: selectedDish.measure
     };
     onMealSelect(newMeal);
     history.push("/planner");
