@@ -1,7 +1,7 @@
 // describe("GetIdeas", () => {
 //   beforeEach(() => {
 //     cy.viewport(375, 667);
-//     cy.visit("http://localhost:3000/");
+//     cy.visit("/");
 //   });
 
 //   describe("Search", () => {
@@ -14,7 +14,7 @@
 describe("Meal Planner", () => {
   beforeEach(() => {
     cy.viewport(375, 667);
-    cy.visit("http://localhost:3000/planner");
+    cy.visit("/planner");
     cy.location("pathname").should("include", "planner");
     cy.reload();
   });
@@ -25,13 +25,14 @@ describe("Meal Planner", () => {
 
   it("clicks the link 'type'", () => {
     cy.contains("type").click();
+    cy.url().should("include", "/recipe");
   });
 });
 
 describe("Grocery List", () => {
   beforeEach(() => {
     //cy.viewport(375, 667);
-    cy.visit("http://localhost:3000/grocery");
+    cy.visit("/grocery");
     cy.location("pathname").should("include", "grocery");
     //cy.reload();
   });
