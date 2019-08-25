@@ -1,15 +1,15 @@
-// describe("GetIdeas", () => {
-//   beforeEach(() => {
-//     cy.viewport(375, 667);
-//     cy.visit("/");
-//   });
+describe("GetIdeas", () => {
+  beforeEach(() => {
+    cy.viewport(375, 667);
+    cy.visit("/");
+  });
 
-//   describe("Search", () => {
-//     // it("shows the correct ", () => {
-//     //   cy.contains("type");
-//     // });
-//   });
-// });
+  describe("Search", () => {
+    it("shows the correct ", () => {
+      cy.contains("type").click();
+    });
+  });
+});
 
 describe("Meal Planner", () => {
   beforeEach(() => {
@@ -22,11 +22,6 @@ describe("Meal Planner", () => {
   it("shows the correct header title", () => {
     cy.get('[data-cy="header-title"]').should("contain", "Meal Planner");
   });
-
-  it("clicks the link 'type'", () => {
-    cy.contains("type").click();
-    cy.url().should("include", "/recipe");
-  });
 });
 
 describe("Grocery List", () => {
@@ -35,5 +30,8 @@ describe("Grocery List", () => {
     cy.visit("/grocery");
     cy.location("pathname").should("include", "grocery");
     //cy.reload();
+  });
+  it("shows the correct header title", () => {
+    cy.get('[data-cy="header-title"]').should("contain", "Grocery List");
   });
 });

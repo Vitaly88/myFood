@@ -46,7 +46,9 @@ function GroceryList({ meals }) {
   const measure = meals.map(meal => meal.measure).flat();
   return (
     <>
-      <Headline size="L">Grocery List</Headline>
+      <Headline data-cy="header-title" size="L">
+        Grocery List
+      </Headline>
 
       <StyledIngredients>
         <StyledTable>
