@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
   position: absolute;
   color: ${props => (props.active ? "red" : "#5938e0")};
   font-size: 30px;

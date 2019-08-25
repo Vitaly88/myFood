@@ -21,7 +21,7 @@ import NotFound from "../pages/NotFound";
 const Grid = styled.div`
   display: grid;
   position: fixed;
-  grid-template-rows: 145px auto 60px;
+  grid-template-rows: 115px auto 60px;
   height: 100vh;
 `;
 

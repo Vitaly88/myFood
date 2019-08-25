@@ -5,7 +5,7 @@ const StyledOval = styled.div`
   position: absolute;
   height: 595px;
   width: 695px;
-  top: -450px;
+  top: -480px;
   background-color: #5938e0;
 
   border-radius: 50%;

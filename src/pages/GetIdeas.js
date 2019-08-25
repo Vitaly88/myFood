@@ -16,6 +16,7 @@ const StyledSubHeadlines = styled.h2`
   font-weight: bold;
   font-size: 28px;
   margin-left: 23px;
+  margin-top: 5px;
 `;
 
 const StyledButton = styled.button`

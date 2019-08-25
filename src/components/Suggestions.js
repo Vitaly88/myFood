@@ -12,7 +12,7 @@ import { truncate } from "../utils/truncate";
 //import LikeButton from "./LikeButton";
 
 const StyledImage = styled.img`
-  margin-top: 0;
+  margin-top: -5px;
   border-radius: 20px;
   width: 140px;
   height: 140px;

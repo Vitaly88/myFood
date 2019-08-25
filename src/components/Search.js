@@ -25,7 +25,7 @@ const Modal = styled.button`
 
 const RecipeInput = styled.input`
   width: 100%;
-  height: 60px;
+  height: 50px;
   border-radius: 10px;
   font-size: 15px;
   font-family: "Arial", "Helvetica", sans-serif;
@@ -35,7 +35,7 @@ const RecipeInput = styled.input`
 `;
 
 const Form = styled.form`
-  margin-top: -135px;
+  margin-top: -116px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -44,8 +44,8 @@ const Form = styled.form`
 const SearchIcon = styled.img`
   position: absolute;
   left: 25px;
-  top: 26px;
-  height: 40px;
+  top: 24px;
+  height: 35px;
   opacity: 0.8;
 `;
 

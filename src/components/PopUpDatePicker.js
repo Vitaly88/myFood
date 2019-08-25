@@ -97,7 +97,6 @@ function PopUpDatePicker({ onTimeSelect }) {
         name="date"
       />
       {errors.selectedDay && <StyledError>{errors.selectedDay}</StyledError>}
-      <br />
       <RadioGroup
         mealType={selectedOption}
         onRadioSelect={handleOptionChange}
@@ -106,7 +105,6 @@ function PopUpDatePicker({ onTimeSelect }) {
       {errors.selectedOption && (
         <StyledError>{errors.selectedOption}</StyledError>
       )}
-      <br />
       <AddMealButton>Add to Meal Planner</AddMealButton>
     </PopUpForm>
   );

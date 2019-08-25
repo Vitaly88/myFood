@@ -16,7 +16,7 @@ const StyledHeadline = styled.h1`
   font-family: "Arial", "Helvetica", sans-serif;
   color: white;
   position: fixed;
-  margin-top: -80px;
+  margin-top: -85px;
 `;
 
 const CenteredHeadline = styled.div`
