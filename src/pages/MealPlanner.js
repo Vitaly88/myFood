@@ -36,7 +36,6 @@ function MealPlanner({ meals, onMealDelete }) {
                 <StyledText>{dish.mealType.toUpperCase()}</StyledText>
               </Headlines>
               <GroupPicTitle
-                // data-cy="image-group"
                 dish={dish}
                 name={dish.title}
                 imageSrc={dish.image}

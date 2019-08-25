@@ -50,6 +50,7 @@ function GroupPicTitle({
     <div key={_id}>
       <BoxItems>
         <IconImage
+          data-cy="image-group"
           alt={name}
           src={imageSrc}
           onClick={() => handlePictureLink(dish)}
