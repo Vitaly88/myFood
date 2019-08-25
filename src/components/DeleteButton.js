@@ -12,7 +12,7 @@ const MinusButton = styled.button`
   font-weight: bold;
   color: #5938e0;
   margin: 19px;
-  padding-bottom: 4px;
+  /* padding-bottom: 4px; */
 
   &:hover {
     background-color: #5938e0;
