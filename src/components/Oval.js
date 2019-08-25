@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-//import PropTypes from "prop-types";
 
 const StyledOval = styled.div`
   position: absolute;
@@ -11,10 +10,6 @@ const StyledOval = styled.div`
 
   border-radius: 50%;
 `;
-
-// const PicOval = styled.div`
-//   background-image: url(${props => props.img});
-// `;
 
 const CenteredOval = styled.div`
   position: fixed;
@@ -29,8 +24,5 @@ function Oval() {
     </CenteredOval>
   );
 }
-// Oval.propTypes = {
-
-// }
 
 export default Oval;

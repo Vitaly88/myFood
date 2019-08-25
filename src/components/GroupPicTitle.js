@@ -33,16 +33,6 @@ const BoxItems = styled.div`
   align-items: center;
 `;
 
-// const DietTag = styled.button`
-//   padding: 5px 3px;
-//   background-color: #5938e0;
-//   color: white;
-//   font-family: Arial, Helvetica, sans-serif;
-//   font-size: 10px;
-//   font-weight: bold;
-//   border-radius: 20px;
-// `
-
 function GroupPicTitle({
   name,
   imageSrc,
@@ -55,7 +45,7 @@ function GroupPicTitle({
   function handlePictureLink() {
     history.push(`recipe/${dish.mealId}`);
   }
-  console.log();
+
   return (
     <div key={_id}>
       <BoxItems>
@@ -64,12 +54,7 @@ function GroupPicTitle({
           src={imageSrc}
           onClick={() => handlePictureLink(dish)}
         />
-        <TextDescription>
-          {name}
-          {/* {dishes.map(dish => (
-              <DietTag>{dish.diet}</DietTag>
-            ))} */}
-        </TextDescription>
+        <TextDescription>{name}</TextDescription>
         {onSelectDish && <AddButton onClick={() => onSelectDish()} />}
         {onDeleteDish && <DeleteButton onClick={() => onDeleteDish()} />}
       </BoxItems>
@@ -80,8 +65,8 @@ function GroupPicTitle({
 GroupPicTitle.propTypes = {
   name: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
-  onSelectDish: PropTypes.func.isRequired,
-  onDeleteDish: PropTypes.func.isRequired,
+  onSelectDish: PropTypes.func,
+  onDeleteDish: PropTypes.func,
   dish: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 };

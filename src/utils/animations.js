@@ -28,3 +28,14 @@ export const loader = keyframes`
 from { transform: rotate(0deg) }
 
 to { transform: rotate(360deg) }`;
+
+export const fadeOut = keyframes`
+from {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+to {
+    opacity: 0;
+    transform: translate(0,50px);
+}`;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Headline from "../components/Headline";
 import GroupPicTitle from "../components/GroupPicTitle";
+import PropTypes from "prop-types";
 
 const GroupedInfo = styled.div`
   margin: 10px;
@@ -49,4 +50,8 @@ function MealPlanner({ meals, onMealDelete }) {
   );
 }
 
+MealPlanner.propTypes = {
+  meals: PropTypes.array.isRequired,
+  onMealDelete: PropTypes.func.isRequired
+};
 export default MealPlanner;

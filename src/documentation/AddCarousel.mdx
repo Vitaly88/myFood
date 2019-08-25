@@ -1,0 +1,30 @@
+---
+name: AddCarousel
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import GlobalStyle from "../app/GlobalStyles";
+import { withRouter } from "react-router-dom";
+import AddCarousel from "./AddCarousel";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { CenteredContent, StyledImage, StyledText } from "./AddCarousel";
+
+<GlobalStyle />
+
+## Properties
+
+<Props of={AddCarousel} />
+
+## Basic usage
+
+<Playground>
+  <Slider>
+    <CenteredContent>
+      <StyledImage />
+      <StyledText />
+    </CenteredContent>
+  </Slider>
+</Playground>

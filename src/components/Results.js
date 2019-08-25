@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import PopUpDatePicker from "./PopUpDatePicker";
 import GroupPicTitle from "./GroupPicTitle";
-//import uuid from "uuid/v4";
 
 const StyledResults = styled.div`
   margin-top: 120px;

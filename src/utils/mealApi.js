@@ -30,14 +30,20 @@ export function searchFood(searchValue) {
             .filter(Boolean)
         };
       });
-
       return dishes;
     });
 }
 
 export function getMeal(id) {
   return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .catch(console.error)
     .then(result => {
       return {
         _id: uuid(),
@@ -60,7 +66,14 @@ export function getCategory(searchValue) {
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${searchValue}`
   )
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .catch(console.error)
     .then(result => {
       const dishes = result.meals.map(dish => {
         return {

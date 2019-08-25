@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import { fadeIn } from "../utils/animations";
+import RadioGroup from "../components/RadioGroup";
 
 const PopUpForm = styled.form`
   display: flex;
@@ -25,11 +26,6 @@ const PopUpForm = styled.form`
   position: fixed;
 `;
 
-const RadioGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const AddMealButton = styled.button`
   width: 130px;
   height: 35px;
@@ -40,17 +36,45 @@ const AddMealButton = styled.button`
   margin-bottom: 20px;
 `;
 
+const StyledError = styled.div`
+  color: #a11035;
+`;
+
 function PopUpDatePicker({ onTimeSelect }) {
   const [selectedDay, setSelectedDay] = React.useState("");
   const [selectedOption, setSelectedOption] = React.useState(null);
+  const [errors, setErrors] = React.useState({});
+
+  function validate() {
+    const errors = {};
+
+    if (selectedDay === "") {
+      errors.selectedDay = "Please select the date!";
+    }
+
+    if (selectedOption === null) {
+      errors.selectedOption = "Please select the type of the meal!";
+    }
+    return Object.keys(errors).length === 0 ? null : errors;
+  }
 
   function handleAddMeal(event) {
     event.preventDefault();
 
+    const errors = validate();
+
+    if (errors) {
+      setErrors(errors);
+      return;
+    }
     onTimeSelect({ day: selectedDay, mealType: selectedOption });
   }
   const modifiersStyles = {
     today: {
+      color: "#fff",
+      backgroundColor: "#5938e0"
+    },
+    selected: {
       color: "#fff",
       backgroundColor: "#5938e0"
     }
@@ -70,39 +94,18 @@ function PopUpDatePicker({ onTimeSelect }) {
         onDayClick={handleDayClick}
         firstDayOfWeek={1}
         modifiersStyles={modifiersStyles}
+        name="date"
       />
-      <RadioGroup>
-        <label>
-          <input
-            type="radio"
-            name="meal-type"
-            value="breakfast"
-            checked={selectedOption === "breakfast"}
-            onChange={handleOptionChange}
-          />
-          Breakfast
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="meal-type"
-            value="lunch"
-            checked={selectedOption === "lunch"}
-            onChange={handleOptionChange}
-          />
-          Lunch
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="meal-type"
-            value="dinner"
-            checked={selectedOption === "dinner"}
-            onChange={handleOptionChange}
-          />
-          Dinner
-        </label>
-      </RadioGroup>
+      {errors.selectedDay && <StyledError>{errors.selectedDay}</StyledError>}
+      <br />
+      <RadioGroup
+        mealType={selectedOption}
+        onRadioSelect={handleOptionChange}
+      />
+      <br />
+      {errors.selectedOption && (
+        <StyledError>{errors.selectedOption}</StyledError>
+      )}
       <br />
       <AddMealButton>Add to Meal Planner</AddMealButton>
     </PopUpForm>
