@@ -62,12 +62,12 @@ function GroceryList({ meals }) {
             <StyledRows>
               <StyledTd>
                 {ingredients.map(elem => (
-                  <StyledDiv key={uuid()}>{elem}</StyledDiv>
+                  <StyledDiv key={uuid()}>{elem.toLowerCase()}</StyledDiv>
                 ))}
               </StyledTd>
               <StyledTd>
                 {measure.map(elem => (
-                  <StyledDiv key={uuid()}>{elem}</StyledDiv>
+                  <StyledDiv key={uuid()}>{elem.toLowerCase()}</StyledDiv>
                 ))}
               </StyledTd>
             </StyledRows>

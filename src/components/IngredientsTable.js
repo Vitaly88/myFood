@@ -48,12 +48,12 @@ function IngredientsTable({ dish }) {
         <StyledRows>
           <StyledTd>
             {dish.ingredients.map((elem, index) => (
-              <StyledDiv key={elem + index}>{elem}</StyledDiv>
+              <StyledDiv key={elem + index}>{elem.toLowerCase()}</StyledDiv>
             ))}
           </StyledTd>
           <StyledTd>
             {dish.measure.map((elem, index) => (
-              <StyledDiv key={dish._id + index}>{elem}</StyledDiv>
+              <StyledDiv key={dish._id + index}>{elem.toLowerCase()}</StyledDiv>
             ))}
           </StyledTd>
         </StyledRows>
