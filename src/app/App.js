@@ -22,7 +22,10 @@ const Grid = styled.div`
   display: grid;
   position: fixed;
   grid-template-rows: 115px auto 60px;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 `;
 
 const Content = styled.div`
