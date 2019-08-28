@@ -58,18 +58,48 @@ function AddCarousel({ dishes, history, onFavSelect }) {
   //   console.log(filteredDishes);
   // }
 
+  const settings = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    className: "center",
+    centerMode:true,
+    infinite:true,
+    centerPadding:"60px",
+    autoplay:true,
+    autoplaySpeed:5000,
+    arrows:false,
+    speed:2000,
+    pauseOnHover:true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          className: "center",
+          centerMode:true,
+          centerPadding:"60px"
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  }
+
   return (
-    <Slider
-      slidesToShow={1}
-      centerMode={true}
-      infinite={true}
-      centerPadding={"60px"}
-      autoplay={true}
-      autoplaySpeed={5000}
-      arrows={false}
-      speed={2000}
-      pauseOnHover={true}
-    >
+    <Slider {...settings}>
       {dishes.map(dish => (
         <CenteredContent key={dish._id}>
           <StyledImage

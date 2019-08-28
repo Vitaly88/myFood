@@ -50,14 +50,47 @@ function Suggestions({ dishes, history, onFavSelect }) {
   //   onFavSelect(newFav);
   // }
 
+  const settings = {
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    leftMode:true,
+    infinite:true,
+    arrows:false,
+    speed:2000,
+    pauseOnHover:true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          centerPadding:"60px",
+          className: "center",
+          centerMode:true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay:false,
+          leftMode:true
+        }
+      }
+    ]
+  }
+
   return (
     <Slider
-      slidesToShow={2}
-      slidesToScroll={2}
-      infinite={true}
-      leftMode={true}
-      autoplay={false}
-      arrows={false}
+      {...settings}
     >
       {dishes.map(dish => (
         <CenteredContent key={dish._id}>
