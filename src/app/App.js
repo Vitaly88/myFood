@@ -32,7 +32,7 @@ const Content = styled.div`
   overflow: auto;
 `;
 
-function App() {
+const App = () => {
   const [meals, setMeals] = React.useState(getMealsFromStorage());
   const [favorites, setFavorites] = React.useState(getFavoritesFromStorage());
 
